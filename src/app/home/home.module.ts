@@ -4,6 +4,7 @@ import { NavbarComponent } from '../components/navbar/navbar.component';
 import { HeroComponent } from './hero/hero.component';
 import { FooterComponent } from '../components/footer/footer.component';
 import { HowitworksComponent } from './howitworks/howitworks.component';
+import { HomeComponent } from './home/home.component';
 
 
 
@@ -12,7 +13,8 @@ import { HowitworksComponent } from './howitworks/howitworks.component';
     NavbarComponent,
     HeroComponent,
     FooterComponent,
-    HowitworksComponent
+    HowitworksComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule
