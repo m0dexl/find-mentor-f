@@ -6,6 +6,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { HowitworksComponent } from './howitworks/howitworks.component';
 import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './category/category.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 
@@ -19,7 +20,8 @@ import { CategoryComponent } from './category/category.component';
     CategoryComponent
   ],
   imports: [
-    CommonModule
+    CommonModule, 
+    FontAwesomeModule
   ]
 })
 export class HomeModule { }
