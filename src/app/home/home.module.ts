@@ -26,6 +26,7 @@ import { AboutComponent } from './about/about.component';
   imports: [
     CommonModule, 
     FontAwesomeModule
-  ]
+  ],
+  exports:[NavbarComponent, FooterComponent]
 })
 export class HomeModule { }
