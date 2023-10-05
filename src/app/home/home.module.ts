@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './category/category.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MentorComponent } from './mentor/mentor.component';
+import { AboutComponent } from './about/about.component';
 
 
 
@@ -19,7 +20,8 @@ import { MentorComponent } from './mentor/mentor.component';
     HowitworksComponent,
     HomeComponent,
     CategoryComponent,
-    MentorComponent
+    MentorComponent,
+    AboutComponent
   ],
   imports: [
     CommonModule, 
