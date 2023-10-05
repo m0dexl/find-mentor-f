@@ -10909,18 +10909,25 @@ p {
 
 @media (min-width: 992px) {
   #mainNav {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    // padding-top: 1.5rem;
+    // padding-bottom: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     border: none;
-    background-color: transparent;
+    // background-color: transparent;
+    background-color: #212529;
     transition: padding-top 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
   }
   #mainNav .navbar-brand {
-    font-size: 1.5em;
+    // font-size: 1.5em;
+    font-size: 1.25em;
+
     transition: font-size 0.3s ease-in-out;
   }
   #mainNav .navbar-brand img {
-    height: 2rem;
+    // height: 2rem;
+    height: 1.5rem;
+
     transition: height 0.3s ease-in-out;
   }
   #mainNav.navbar-shrink {
@@ -11130,7 +11137,7 @@ header.masthead .masthead-btn{
   margin-left: 0;
   text-align: center;
   color: white;
-  border: 7px solid #e9ecef;
+  // border: 7px solid #e9ecef;
   border-radius: 100%;
   background-color: #ffc800;
 }
