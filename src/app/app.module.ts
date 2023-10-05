@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import { CategoryModule } from './category/category.module';
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -15,6 +18,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppRoutingModule,
     HomeModule,
     FontAwesomeModule,
+    CategoryModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
