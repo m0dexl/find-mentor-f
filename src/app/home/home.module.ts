@@ -7,6 +7,7 @@ import { HowitworksComponent } from './howitworks/howitworks.component';
 import { HomeComponent } from './home/home.component';
 import { CategoryComponent } from './category/category.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MentorComponent } from './mentor/mentor.component';
 
 
 
@@ -17,7 +18,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FooterComponent,
     HowitworksComponent,
     HomeComponent,
-    CategoryComponent
+    CategoryComponent,
+    MentorComponent
   ],
   imports: [
     CommonModule, 
