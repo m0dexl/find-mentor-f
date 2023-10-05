@@ -7,6 +7,7 @@ import { HomeModule } from './home/home.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CategoryModule } from './category/category.module';
+import { LoginModule } from './login/login.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { CategoryModule } from './category/category.module';
     HomeModule,
     FontAwesomeModule,
     CategoryModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
