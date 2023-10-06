@@ -1,27 +1,29 @@
 .ftco-section {
-  background-color: #f8f9fa; 
-  padding: 80px 0; 
+  background-color: #f8f9fa;
+  padding: 80px 0;
 }
-
 
 .heading-section {
   color: #ffcc29;
-  font-size: 36px; 
+  font-size: 36px;
   text-align: center;
   margin-bottom: 40px;
 }
 
-
 .wrap {
   display: flex;
   justify-content: space-between;
-  background: linear-gradient(to right, #000, #ffcc29, #fff); /* Siyahdan sarıya geçişli arkaplan */
-  color: #fff; 
+  background: linear-gradient(
+    to right,
+    black,
+    #f1c638,
+    #f1df8b
+  ); /* Siyahdan sarıya geçişli arkaplan */
+  color: #fff;
   padding: 20px;
-  border-radius: 10px; 
+  border-radius: 10px;
   box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2); /* Gölge efekti */
 }
-
 
 .text-wrap {
   flex-basis: 50%;
@@ -29,39 +31,39 @@
 }
 
 .text h2 {
-  color: #ffcc29; 
-  font-size: 24px; 
+  color: #ffcc29;
+  font-size: 24px;
 }
 
 .text p {
-  font-size: 16px; 
-  color: #333; 
+  font-size: 18px;
+  color: #333;
 }
 
-.btn-white {
-  background-color: transparent;
-  border: 2px solid #ffcc29; 
-  color: #ffcc29; 
-  padding: 10px 20px;
-  text-decoration: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    background-color: #000;
-    color: #fff; 
-  }
+.btn-black {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
 }
 
+.btn-black:hover {
+  background-color: #333;
+  border-color: #333;
+}
+
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
 
 .login-wrap {
-  flex-basis: 50%;
+  flex-basis: 40%;
   padding: 40px;
 }
 
 .signin-form .form-control {
-  background-color: #fff; 
-  color: #333; 
+  background-color: #fff;
+  color: #333;
   border: none;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -69,7 +71,7 @@
 }
 
 .signin-form button[type="submit"] {
-  background-color: #ffcc29; 
+  background-color: #ffcc29;
   color: #000;
   border: none;
   border-radius: 5px;
@@ -78,16 +80,14 @@
   transition: background-color 0.3s ease, color 0.3s ease;
 
   &:hover {
-    background-color: #000; 
-    color: #fff; 
+    background-color: #000;
+    color: #fff;
   }
 }
 
-
 .signin-form .form-group label.label {
-  color: #ffcc29; 
+  color: #ffcc29;
 }
-
 
 .checkbox-wrap {
   label {
@@ -96,7 +96,30 @@
 
   input[type="checkbox"]:checked + .checkmark {
     background-color: #ffcc29;
-    border-color: #ffcc29; 
+    border-color: #ffcc29;
   }
 }
 
+// Responsive Yapma
+@media screen and (max-width: 768px) {
+
+  .ftco-section {
+    padding: 20px;
+  }
+  .wrap {
+    flex-direction: column;
+  }
+  .login-wrap, .text-wrap {
+    flex-basis: 100%;
+    padding: 20px;
+  }
+  .login-wrap {
+    margin-top: 20px;
+  }
+  .signin-form .form-control {
+    margin-bottom: 10px;
+  }
+  .signin-form button[type="submit"] {
+    padding: 10px 15px;
+  }
+}
