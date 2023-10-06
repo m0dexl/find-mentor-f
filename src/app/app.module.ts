@@ -22,6 +22,7 @@ import { LoginModule } from './login/login.module';
     CategoryModule,
     LoginModule
   ],
+  
   providers: [],
   bootstrap: [AppComponent]
 })
