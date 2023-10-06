@@ -5,6 +5,7 @@ import { HeroComponent } from './home/hero/hero.component';
 import { HowitworksComponent } from './home/howitworks/howitworks.component';
 import { CategoriesComponent } from './category/categories/categories.component';
 import { LoginComponent } from './login/login/login.component';
+import { AdsComponent } from './ads/ads/ads.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect to home page
@@ -12,6 +13,7 @@ const routes: Routes = [
   children: [{path:"",component:HeroComponent},
   {path:"",component:HowitworksComponent}]},
   {path: "categories",component:CategoriesComponent},
+  {path: "ads",component:AdsComponent},
   {path: "login", component:LoginComponent},
 ];
 

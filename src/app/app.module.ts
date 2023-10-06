@@ -8,6 +8,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { CategoryModule } from './category/category.module';
 import { LoginModule } from './login/login.module';
+import { AdsModule } from './ads/ads.module';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { LoginModule } from './login/login.module';
     HomeModule,
     FontAwesomeModule,
     CategoryModule,
-    LoginModule
+    LoginModule,
+    AdsModule
   ],
   
   providers: [],
