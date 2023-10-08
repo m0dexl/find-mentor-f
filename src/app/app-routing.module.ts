@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login/login.component';
 import { AdsComponent } from './ads/ads/ads.component';
 import { SignupComponent } from './login/signup/signup.component';
 import { FormComponent } from './ads/form/form.component';
+import { ProfileComponent } from './profile/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect to home page
@@ -18,7 +19,9 @@ const routes: Routes = [
   {path: "ads",component:AdsComponent},
   {path: "login", component:LoginComponent},
   {path: "signup", component: SignupComponent},
-  {path: "form", component:FormComponent}
+  {path: "form", component:FormComponent},
+  {path: "profile", component:ProfileComponent}
+
 ];
 
 @NgModule({
