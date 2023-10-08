@@ -7,6 +7,7 @@ import { CategoriesComponent } from './category/categories/categories.component'
 import { LoginComponent } from './login/login/login.component';
 import { AdsComponent } from './ads/ads/ads.component';
 import { SignupComponent } from './login/signup/signup.component';
+import { ProfileComponent } from './profile/profile/profile.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect to home page
@@ -16,7 +17,8 @@ const routes: Routes = [
   {path: "categories",component:CategoriesComponent},
   {path: "ads",component:AdsComponent},
   {path: "login", component:LoginComponent},
-  {path: "signup", component: SignupComponent}
+  {path: "signup", component: SignupComponent},
+  {path: "profile", component: ProfileComponent}
 ];
 
 @NgModule({
