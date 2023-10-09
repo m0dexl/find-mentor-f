@@ -4,8 +4,6 @@ export interface UserRequest {
     FullName: string;
     PasswordSalt: string;
     PasswordHash: string;
-    
-
-
+    //a
 }
 
