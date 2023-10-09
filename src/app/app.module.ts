@@ -12,6 +12,9 @@ import { AdsModule } from './ads/ads.module';
 import { ProfileModule } from './profile/profile.module';
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +27,9 @@ import { ProfileModule } from './profile/profile.module';
     CategoryModule,
     LoginModule,
     AdsModule,
-    ProfileModule
+    ProfileModule,
+   
+    
   ],
   
   providers: [],
