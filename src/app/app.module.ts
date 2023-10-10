@@ -10,8 +10,7 @@ import { CategoryModule } from './category/category.module';
 import { LoginModule } from './login/login.module';
 import { AdsModule } from './ads/ads.module';
 import { ProfileModule } from './profile/profile.module';
-
-
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -28,8 +27,7 @@ import { ProfileModule } from './profile/profile.module';
     LoginModule,
     AdsModule,
     ProfileModule,
-   
-    
+    FormsModule
   ],
   
   providers: [],
