@@ -75,32 +75,33 @@
 .registration-form .form-group label.label {
   color: #ffcc29;
 }
+.form-group button{
+  color:black;
+}
+//Responsive Yapma
 
-
-/* Responsive Yapma */
-@media screen and (max-width: 768px) {
-  .ftco-section {
-    padding: 20px;
-  }
+@media (max-width: 768px) {
   .wrap {
     flex-direction: column;
   }
-  .login-wrap,
-  .text-wrap {
-    flex-basis: 100%;
-    padding: 20px;
-  }
+
+  .text-wrap,
   .login-wrap {
-    margin-top: 20px;
+    flex-basis: 100%;
   }
-  .registration-form button[type="submit"] {
-    padding: 10px 15px;
-    align-items: center;
-   
-  }
-  .registration-form .form-group input {
-    width: 100%; 
+  
+  .registration-form .form-group {
+    flex-basis: 100%;
   }
 }
+
+
+@media (min-width: 768px) and (max-width: 992px) {
+  .registration-form .form-group {
+    flex-basis: 48%;
+  }
+}
+
+
 
 
