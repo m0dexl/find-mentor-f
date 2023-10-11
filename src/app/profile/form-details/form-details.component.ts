@@ -10,13 +10,16 @@ export class FormDetailsComponent {
 
   examples = [
     {
-      started: "15 july",
+      started: "",
     },
     {
-      started: "20 august"
+      started: ""
     },
     {
-      started: "15 oct"
+      started: ""
+    },
+    {
+      started: ""
     }
   ]
 
