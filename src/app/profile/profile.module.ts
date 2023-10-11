@@ -6,6 +6,7 @@ import { FormDetailsComponent } from './form-details/form-details.component';
 import { FormDetailsPopUpComponent } from './form-details-pop-up/form-details-pop-up.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
+import { HomeModule } from '../home/home.module';
 
 
 
@@ -19,7 +20,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
   ]
 })
 export class ProfileModule { }
