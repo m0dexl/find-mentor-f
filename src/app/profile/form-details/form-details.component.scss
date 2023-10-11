@@ -42,7 +42,7 @@
 
 /* Detaylar düğmesi stillemesi */
 .details-button {
-    background-color: #cba4db;
+    background-color:#000;
     color: #fff;
     border: none;
     padding: 10px 15px;
@@ -52,7 +52,7 @@
 }
 
 .details-button:hover {
-    background-color: #a87cb9;
+    background-color:#fbc02d;
 }
 
 /* Pop-up stillemesi */
@@ -246,7 +246,7 @@ body {
 }
 
 .bio-desk {
-    width: 60%;
+    width: 80%;
 }
 
 .bio-desk h4 {
@@ -267,7 +267,7 @@ body {
 }
 
 .bio-desk h4.purple {
-    color: #caa3da;
+    color: black;
 }
 
 .file-pos {
@@ -518,4 +518,33 @@ ul.summary-list > li:last-child  {
 //   }
 
 
+@media (max-width: 768px) {
+    .popup {
+        width: 80%; /* Örnek olarak pop-up'ın genişliğini küçültüyoruz */
+        height: auto; /* Yüksekliği otomatik olarak ayarlayabilirsiniz */
+        left: 10%; /* Ekrana göre yatay konumu ayarlayın */
+        top: 10%; /* Ekrana göre dikey konumu ayarlayın */
+    }
+}
+
+/* Kenarlık eklemek için */
+.bio-desk {
+    border: 1px solid #ddd; /* Kenarlık rengi ve kalınlığı */
+    border-radius: 5px; /* Köşeleri yuvarlatma */
+    padding: 10px; /* İçeriği içeriden boşaltma */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif bir gölge eklemek için */
+    margin: 17px;
+}
+
+/* Gölge eklemek için alternatif stil (kenarlık olmadan) */
+.bio-desk {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hafif bir gölge eklemek için */
+    padding: 10px; /* İçeriği içeriden boşaltma */
+    border-radius: 5px; /* Köşeleri yuvarlatma */
+}
+
+// .bio-desk p {
+//     display: inline; /* <p> elementlerini yatayda sıralamak için */
+//     margin-right: 10px; /* <p> elementleri arasında boşluk bırakmak için */
+//   }
 
