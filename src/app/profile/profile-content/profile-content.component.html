@@ -49,9 +49,10 @@
           </div>
           <div class="panel-body bio-graph-info">
               <h1>Biyografi</h1>
-              <div class="row">
+              <div class="row" *ngFor="let user of users">
                   <div class="bio-row">
-                      <p><span>Username </span>: Camila</p>
+                      <p *ngIf="!inputUsername"><span>Username </span>: {{user["username"]}} <a (click)="showInputUsername()"><fa-icon [icon]="faEdit"></fa-icon></a></p>
+                      <p *ngIf="inputUsername"><span>Username </span>: <input type="text" > </p>
                   </div>
                   <div class="bio-row">
                       <p><span>Adınız </span>: Camila</p>
