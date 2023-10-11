@@ -11,6 +11,7 @@ import { LoginModule } from './login/login.module';
 import { AdsModule } from './ads/ads.module';
 import { ProfileModule } from './profile/profile.module';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -27,7 +28,8 @@ import { FormsModule } from '@angular/forms';
     LoginModule,
     AdsModule,
     ProfileModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   
   providers: [],

@@ -11,7 +11,7 @@ import { AuthService } from 'src/core/services/auth/auth.service';
   styleUrls: ['./signup.component.scss'],
   providers: [MessageService,ConfirmationService]
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent {
 
   public registerRequest: RegisterRequest = <RegisterRequest> {};
 
@@ -20,9 +20,6 @@ export class SignupComponent implements OnInit {
     private readonly router: Router,
     private messageService: MessageService
   ){}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
 
   async signup(){
     let status = await this.authService.register(this.registerRequest);

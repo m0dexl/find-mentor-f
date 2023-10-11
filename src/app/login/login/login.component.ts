@@ -11,7 +11,7 @@ import { AuthService } from 'src/core/services/auth/auth.service';
   styleUrls: ['./login.component.scss'],
   providers:[MessageService, ConfirmationService]
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent{
 
   public loginRequest: LoginRequest = <LoginRequest>{};
 
@@ -30,8 +30,5 @@ export class LoginComponent implements OnInit{
       this.messageService.add({severity: 'error', summary:'Error', detail: 'Email veya şifre hatalı'});
       this.loginRequest.password='';
     }
-  }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
   }
 }
