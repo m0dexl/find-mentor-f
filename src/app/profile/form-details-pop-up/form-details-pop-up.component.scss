@@ -8,6 +8,8 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
+    overflow: hidden;
+
 }
 .profile-nav, .profile-info{
     margin-top:30px;   
@@ -465,9 +467,6 @@ ul.summary-list > li:last-child  {
 
 .ilanClose-popup:hover {
     color: #aaa;
-}
-body{
-    overflow: hidden;
 }
 .ilanPopup-hidden{
     overflow: auto;

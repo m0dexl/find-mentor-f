@@ -5,6 +5,7 @@ import { ProfileContentComponent } from './profile-content/profile-content.compo
 import { FormDetailsComponent } from './form-details/form-details.component';
 import { FormDetailsPopUpComponent } from './form-details-pop-up/form-details-pop-up.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,7 +18,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   ],
   imports: [
     CommonModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ]
 })
 export class ProfileModule { }

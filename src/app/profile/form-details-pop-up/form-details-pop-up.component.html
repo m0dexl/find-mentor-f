@@ -37,74 +37,117 @@
       <div class="panel">
         <div class="bio-graph-heading">
           <h4>İlanlarım</h4>
-          <br>
+          <br />
           <div class="buttons">
             <button class="ilanGoruntule" (click)="showPopup()">
               İlanlarımı Görüntüle
             </button>
-            <button class="ilanEkle" (click)="showPopup()">İlan Ekle</button>
+            <button class="ilanEkle" (click)="showIlanEkle()">İlan Ekle</button>
           </div>
 
-        
-<div *ngIf="!isPopupVisible" class="ilanPopup">
-  <div class="ilanPopup-content">
-    <span (click)="closePopup()" class="ilanClose-popup">&times;</span>
+          <div *ngIf="!isPopupVisible" class="ilanPopup">
+            <div class="ilanPopup-content">
+              <span (click)="closePopup()" class="ilanClose-popup"
+                >&times;</span
+              >
 
-    <!-- İlan Bilgileri -->
-    <div class="ilanBilgileri" *ngIf="!isEditing">
-      <p>İlan Adı: {{ ilanAdi }}</p>
-      <p>İlan Kategorisi: {{ ilanKategorisi }}</p>
-      <p>İlan Tarihi: {{ ilanTarihi }}</p>
-    </div>
+              <!-- İlan Bilgileri -->
+              <div class="ilanBilgileri" *ngIf="!isEditing">
+                <p>İlan Adı: {{ ilanAdi }}</p>
+                <p>İlan Kategorisi: {{ ilanKategorisi }}</p>
+                <p>İlan Tarihi: {{ ilanTarihi }}</p>
+              </div>
 
-    <!-- Düzenleme Modu -->
-    <div *ngIf="isEditing" class="form-group">
-      <label for="editIlanAdi">İlan Adı</label>
-      <input type="text" (ngModel)="editedIlanAdi" name="editIlanAdi" class="form-control" />
-    </div>
-    <div *ngIf="isEditing" class="form-group">
-      <label for="editIlanKategorisi">İlan Kategorisi</label>
-      <input type="text" (ngModel)="editedIlanKategorisi" name="editIlanKategorisi" class="form-control" />
-    </div>
-    <div *ngIf="isEditing" class="form-group">
-      <label for="editIlanTarihi">İlan Tarihi</label>
-      <input type="text" (ngModel)="editedIlanTarihi" name="editIlanTarihi" class="form-control" />
-    </div>
+              <!-- Düzenleme Modu -->
+              <div *ngIf="isEditing" class="form-group">
+                <label for="editIlanAdi">İlan Adı</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editedIlanAdi"
+                  name="editIlanAdi"
+                  class="form-control"
+                />
+              </div>
+              <div *ngIf="isEditing" class="form-group">
+                <label for="editIlanKategorisi">İlan Kategorisi</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editedIlanKategorisi"
+                  name="editIlanKategorisi"
+                  class="form-control"
+                />
+              </div>
+              <div *ngIf="isEditing" class="form-group">
+                <label for="editIlanTarihi">İlan Tarihi</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editedIlanTarihi"
+                  name="editIlanTarihi"
+                  class="form-control"
+                />
+              </div>
 
-    <!-- Kaydet Butonu -->
-    <button class="ilanKaydet" *ngIf="isEditing" (click)="kaydetIlan()">Kaydet</button>
+              <!-- Kaydet Butonu -->
+              <button
+                class="ilanKaydet"
+                *ngIf="isEditing"
+                (click)="kaydetIlan()"
+              >
+                Kaydet
+              </button>
 
-    <!-- Düzenleme ve Silme Butonları (Düzenleme Modu Kapalıysa Göster) -->
-    <div *ngIf="!isEditing" class="buttons">
-      <button class="ilanSil" (click)="ilanSil()">İlan Sil</button>
-      <button class="ilanDuzenle" (click)="duzenleIlan()">İlan Düzenle</button>
-    </div>
-  </div>
-</div>
+              <!-- Düzenleme ve Silme Butonları (Düzenleme Modu Kapalıysa Göster) -->
+              <div *ngIf="!isEditing" class="buttons">
+                <button class="ilanSil" (click)="ilanSil()">İlan Sil</button>
+                <button class="ilanDuzenle" (click)="duzenleIlan()">
+                  İlan Düzenle
+                </button>
+              </div>
+            </div>
+          </div>
 
-<!-- İlan Ekle -->
-
- <div *ngIf="ilanEkleVisible">
-      <form (submit)="ekleIlan()">
-        <div class="form-group">
-          <label for="ilanAdi">İlan Adı</label>
-          <input type="text" (ngModel)="ilanAdi" name="ilanAdi" class="form-control" />
+          <!-- İlan Ekle -->
+          <div *ngIf="!ilanEkleVisible" class="ilanPopup">
+            <div class="ilanPopup-content">
+              <span (click)="closeIlanEkle()" class="ilanClose-popup"
+                >&times;</span
+              >
+              <div class="form-group">
+                <label for="ilanAdi">İlan Adı</label>
+                <input
+                  type="text"
+                  [(ngModel)]="eklenecekIlanAdi"
+                  name="ilanAdi"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="ilanKategorisi">İlan Kategorisi</label>
+                <input
+                  type="text"
+                  [(ngModel)]="ilanKategorisi"
+                  name="ilanKategorisi"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="ilanTarihi">İlan Tarihi</label>
+                <input
+                  type="text"
+                  [(ngModel)]="ilanTarihi"
+                  name="ilanTarihi"
+                  class="form-control"
+                />
+              </div>
+              <button type="submit" class="ilanKaydet" (click)="ekleIlan()">
+                Kaydet
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="ilanKategorisi">İlan Kategorisi</label>
-          <input type="text" (ngModel)="ilanKategorisi" name="ilanKategorisi" class="form-control" />
-        </div>
-        <div class="form-group">
-          <label for="ilanTarihi">İlan Tarihi</label>
-          <input type="text" (ngModel)="ilanTarihi" name="ilanTarihi" class="form-control" />
-        </div>
-        <button type="submit" class="ilanKaydet">Kaydet</button>
-      </form>
-    </div>
-  </div>
-</div>
+      </div>
 
-          <!-- <div class="panel-body bio-graph-info">
+      <!-- <div class="panel-body bio-graph-info">
             <h1>Biyografi</h1>
             <div class="row">
               <div class="bio-row">
@@ -132,7 +175,7 @@
           </div>
         </div>
         <div> -->
-          <!-- <div class="row">
+      <!-- <div class="row">
               <div class="col-md-6">
                   <div class="card">
                       <div class="card-body">
@@ -190,8 +233,8 @@
                   </div>
               </div>
           </div> -->
-        </div>
-      </div>
     </div>
-  <!-- </div>
+  </div>
+</div>
+<!-- </div>
 </div> -->

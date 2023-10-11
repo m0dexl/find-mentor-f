@@ -18,12 +18,20 @@ export class FormDetailsPopUpComponent {
   editedIlanKategorisi: string = '';
   editedIlanTarihi: string = '';
 
+  eklenecekIlanAdi: string = "";
   showPopup() {
     this.isPopupVisible = !this.isPopupVisible;
   }
 
   closePopup() {
     this.isPopupVisible = !this.isPopupVisible;
+  }
+
+  showIlanEkle(){
+    this.ilanEkleVisible = !this.ilanEkleVisible;
+  }
+  closeIlanEkle(){
+    this.ilanEkleVisible = !this.ilanEkleVisible;
   }
 
   ilanSil() {
@@ -53,10 +61,9 @@ export class FormDetailsPopUpComponent {
     this.ilanTarihi = this.editedIlanTarihi;
 
     this.isEditing = false; //düzneleme modunu kapat
-    console.log(this.ilanAdi);
+    console.log("asdasd:",this.ilanAdi);
   }
   ekleIlan() {
-    this.ilanEkleVisible = true;
-    this.isPopupVisible = false; // İlan popup'ını gizlemek için
+    console.log("ilan ekle:",this.eklenecekIlanAdi)
   }
 }
