@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
 export class FormDetailsPopUpComponent {
   isPopupVisible = true;
   isEditing = false;
-  ilanEkleVisible: boolean = false;
+  ilanEkleVisible = false;
+  isFormValid = true;
 
   ilanAdi: string = 'Frontend Eğitimi';
   ilanKategorisi: string = 'Bilgisayar/Yazılım';
@@ -18,7 +19,10 @@ export class FormDetailsPopUpComponent {
   editedIlanKategorisi: string = '';
   editedIlanTarihi: string = '';
 
-  eklenecekIlanAdi: string = "";
+  addIlanAdi: string = '';
+  addIlanKategorisi: string = '';
+  addIlanTarihi: string = '';
+
   showPopup() {
     this.isPopupVisible = !this.isPopupVisible;
   }
@@ -27,10 +31,10 @@ export class FormDetailsPopUpComponent {
     this.isPopupVisible = !this.isPopupVisible;
   }
 
-  showIlanEkle(){
+  showIlanEkle() {
     this.ilanEkleVisible = !this.ilanEkleVisible;
   }
-  closeIlanEkle(){
+  closeIlanEkle() {
     this.ilanEkleVisible = !this.ilanEkleVisible;
   }
 
@@ -61,9 +65,27 @@ export class FormDetailsPopUpComponent {
     this.ilanTarihi = this.editedIlanTarihi;
 
     this.isEditing = false; //düzneleme modunu kapat
-    console.log("asdasd:",this.ilanAdi);
+    console.log('asdasd:', this.ilanAdi);
   }
+
+  
   ekleIlan() {
-    console.log("ilan ekle:",this.eklenecekIlanAdi)
+
+    // Tüm giriş alanlarının doldurulup doldurulmadığını kontrol edin
+    if (this.addIlanAdi && this.addIlanKategorisi && this.addIlanTarihi) {
+  
+      alert('İlan eklendi');
+
+      this.ilanAdi = this.addIlanAdi;
+      this.ilanKategorisi = this.addIlanKategorisi;
+      this.ilanTarihi = this.addIlanTarihi;
+
+      this.ilanEkleVisible = !this.ilanEkleVisible; //ilan başarılı şekilde eklenirse popupı kapat
+
+    } else {
+      alert('Eksik veya yanlış yazdınız.Tekrar kontrol ediniz.');
+
+
+    }
   }
 }
