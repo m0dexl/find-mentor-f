@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { HomeModule } from '../home/home.module';
 import { SignupComponent } from './signup/signup.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -14,7 +15,8 @@ import { SignupComponent } from './signup/signup.component';
   ],
   imports: [
     CommonModule,
-    HomeModule
+    HomeModule,
+    FormsModule
   ]
 })
 export class LoginModule { }
