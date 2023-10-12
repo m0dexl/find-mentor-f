@@ -13,6 +13,7 @@ import { RegisterRequest } from 'src/core/models/request/register-request-model'
 import { User } from 'src/core/models/user.model';
 import { BaseResponse } from 'src/core/models/response/base-response-model';
 import { Notice } from 'src/core/models/notice.model';
+import { Answer} from 'src/core/models/answer.model'
 
 @Injectable({
   providedIn: 'root',
@@ -139,6 +140,17 @@ export class ApiService {
         })
       );
   }
+   //form cevaplarını Getir
+   getAnswerInfo(): Observable<BaseDataResponse<Answer>> {
+    return this.http
+      .get<BaseDataResponse<Answer>>(this.endpoint + '/Auth/AnswerInfo')
+      .pipe(
+        map((result) => {
+          return result;
+        })
+      );
+  }
+
 }
 
-////
+/////
