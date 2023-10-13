@@ -149,3 +149,16 @@
     </div>
   </div>
 </div>
+
+
+<div *ngIf="notices.length > 0" class="ilanListesi">    <!--Dizi boş değilse ilanları getir-->
+  <h4>İlanlarım</h4>
+  <ul>
+    <li *ngFor="let notice of notices">   <!--İlanları listele-->
+      <p>İlan Adı: {{notice.NoticeTitle}}</p>
+      <p>İlan Kategorisi: {{ notice.NoticeCategoryName }}</p>
+      <p>İlan Açıklaması: {{ notice.NoticeDescription }}</p>
+      <p>Mentor İlan Fotoğrafı: {{ notice.NoticeMentorPhoto }}</p>
+    </li>
+  </ul>
+</div>

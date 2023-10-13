@@ -13,6 +13,7 @@ import { RegisterRequest } from 'src/core/models/request/register-request-model'
 import { User } from 'src/core/models/user.model';
 import { BaseResponse } from 'src/core/models/response/base-response-model';
 import { Notice } from 'src/core/models/notice.model';
+import { Categories } from 'src/core/models/categories.model';
 
 @Injectable({
   providedIn: 'root',
@@ -132,7 +133,17 @@ export class ApiService {
 
   getNoticeInfo(): Observable<BaseDataResponse<Notice>> {  //ilanları getir
     return this.http
-      .get<BaseDataResponse<Notice>>(this.endpoint + '/Auth/GetHouseInfo') //endpoint değişecek
+      .get<BaseDataResponse<Notice>>(this.endpoint + '/Auth/GetNoticeInfo') //endpoint değişecek
+      .pipe(
+        map((result) => {
+          return result;
+        })
+      );
+  }
+
+  getCategoriesInfo(): Observable<BaseDataResponse<Categories>> {  //Kategorileri getir
+    return this.http
+      .get<BaseDataResponse<Categories>>(this.endpoint + '/Auth/GetCategoriesInfo') //endpoint değişecek
       .pipe(
         map((result) => {
           return result;
