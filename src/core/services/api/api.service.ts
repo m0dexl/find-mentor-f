@@ -15,6 +15,7 @@ import { BaseResponse } from 'src/core/models/response/base-response-model';
 import { Notice } from 'src/core/models/notice.model';
 import { Categories } from 'src/core/models/categories.model';
 import { Answer } from 'src/core/models/answer.model';
+import { formAnswerRequest } from 'src/core/models/request/form-answer-request-model';
 
 
 @Injectable({
@@ -133,7 +134,8 @@ export class ApiService {
       .pipe(share());
   }
 
-  getNoticeInfo(): Observable<BaseDataResponse<Notice>> {  //ilanları getir
+  getNoticeInfo(): Observable<BaseDataResponse<Notice>> {
+    //ilanları getir
     return this.http
       .get<BaseDataResponse<Notice>>(this.endpoint + '/Auth/GetNoticeInfo') //endpoint değişecek
       .pipe(
@@ -143,17 +145,20 @@ export class ApiService {
       );
   }
 
-  getCategoriesInfo(): Observable<BaseDataResponse<Categories>> {  //Kategorileri getir
+  getCategoriesInfo(): Observable<BaseDataResponse<Categories>> {
+    //Kategorileri getir
     return this.http
-      .get<BaseDataResponse<Categories>>(this.endpoint + '/Auth/GetCategoriesInfo') //endpoint değişecek
+      .get<BaseDataResponse<Categories>>(
+        this.endpoint + '/Auth/GetCategoriesInfo'
+      ) //endpoint değişecek
       .pipe(
         map((result) => {
           return result;
         })
       );
   }
-   //form cevaplarını Getir
-   getAnswerInfo(): Observable<BaseDataResponse<Answer>> {
+  //form cevaplarını Getir
+  getAnswerInfo(): Observable<BaseDataResponse<Answer>> {
     return this.http
       .get<BaseDataResponse<Answer>>(this.endpoint + '/Auth/AnswerInfo')
       .pipe(
@@ -162,7 +167,20 @@ export class ApiService {
         })
       );
   }
-
+  formAnswer(     //form cevaplarını gönder
+    request: formAnswerRequest
+  ): Observable<BaseDataResponse<TokenResponse>> {
+    return this.http
+      .post<BaseDataResponse<TokenResponse>>(
+        this.endpoint + '/Form/formAnswer',  //endpoint değişecek
+        request
+      )
+      .pipe(
+        map((result) => {
+          return result;
+        })
+      );
+  }
 }
 
 /////
