@@ -104,7 +104,7 @@ export class ApiService {
 
   getProfileInfo(): Observable<BaseDataResponse<User>> {
     return this.http
-      .get<BaseDataResponse<User>>(this.endpoint + '/User/GetAll')
+      .get<BaseDataResponse<User>>(this.endpoint + '/Auth/GetProfileInfo')
       .pipe(
         map((result) => {
           return result;
