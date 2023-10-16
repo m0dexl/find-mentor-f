@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
-<br>
-<br>
+<br />
+<br />
 <section class="ftco-section">
   <div class="container">
     <div class="row justify-content-center">
@@ -15,11 +15,25 @@
             <form action="#" class="signin-form" (ngSubmit)="login()">
               <div class="form-group mb-3">
                 <label class="label" for="mail">E-mail</label>
-                <input type="text" class="form-control" required  [(ngModel)]="loginRequest.userName"  [ngModelOptions]="{standalone: true}" name="email" />
+                <input
+                  type="text"
+                  class="form-control"
+                  required
+                  [(ngModel)]="loginRequest.userName"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="email"
+                />
               </div>
               <div class="form-group mb-3">
                 <label class="label" for="password">Şifre</label>
-                <input type="password" class="form-control" required [(ngModel)]="loginRequest.password"  [ngModelOptions]="{standalone: true}" name="password"/>
+                <input
+                  type="password"
+                  class="form-control"
+                  required
+                  [(ngModel)]="loginRequest.password"
+                  [ngModelOptions]="{ standalone: true }"
+                  name="password"
+                />
               </div>
               <div class="form-group">
                 <button
@@ -37,7 +51,9 @@
           >
             <div class="text w-100">
               <p>Hesabın yok mu?</p>
-              <a href="signup" class="btn btn-black btn-outline-black">Kayıt Ol</a>
+              <a href="signup" class="btn btn-black btn-outline-black"
+                >Kayıt Ol</a
+              >
             </div>
           </div>
         </div>
@@ -45,4 +61,3 @@
     </div>
   </div>
 </section>
-

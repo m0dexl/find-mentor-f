@@ -21,10 +21,11 @@ const routes: Routes = [
   {path: "ads",component:AdsComponent},
   {path: "login", component:LoginComponent},
   {path: "signup", component: SignupComponent},
-  {path: "form", component:FormComponent},
+  
   {path: "profile", component:ProfileComponent},
   {path: "profile-ads", component:FormDetailsComponent},
-  {path: "profile-ads2", component:FormDetailsPopUpComponent}
+  {path: "profile-ads2", component:FormDetailsPopUpComponent},
+  {path: "iletisim", component:FormComponent}
 
 
 ];

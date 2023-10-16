@@ -11,7 +11,8 @@ import { LoginModule } from './login/login.module';
 import { AdsModule } from './ads/ads.module';
 import { ProfileModule } from './profile/profile.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtInterceptor } from 'src/core/services/interceptor/jwt.interceptor';
 
 
 
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },  ], //http isteklerini alıp işlemek için 
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
