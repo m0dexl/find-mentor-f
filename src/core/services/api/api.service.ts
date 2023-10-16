@@ -13,9 +13,9 @@ import { RegisterRequest } from 'src/core/models/request/register-request-model'
 import { User } from 'src/core/models/user.model';
 import { BaseResponse } from 'src/core/models/response/base-response-model';
 import { Notice } from 'src/core/models/notice.model';
-import { Categories } from 'src/core/models/categories.model';
 import { Answer } from 'src/core/models/answer.model';
 import { formAnswerRequest } from 'src/core/models/request/form-answer-request-model';
+import { Category } from 'src/core/models/category.model';
 
 
 @Injectable({
@@ -145,11 +145,11 @@ export class ApiService {
       );
   }
 
-  getCategoriesInfo(): Observable<BaseDataResponse<Categories>> {
+  getCategoryInfo(): Observable<BaseDataResponse<Category>> {
     //Kategorileri getir
     return this.http
-      .get<BaseDataResponse<Categories>>(
-        this.endpoint + '/Auth/GetCategoriesInfo'
+      .get<BaseDataResponse<Category>>(
+        this.endpoint + '/Auth/GetCategoryInfo'
       ) //endpoint değişecek
       .pipe(
         map((result) => {

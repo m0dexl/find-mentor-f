@@ -25,9 +25,12 @@ export class LoginComponent{
     let status = await this.authService.login(this.loginRequest);
 
     if(status == ResponseStatus.Ok){
-      await this.router.navigate(['../profile']);
+      await this.router.navigate(['profile']);
     }else if(status == ResponseStatus.Invalid){
-      this.messageService.add({severity: 'error', summary:'Error', detail: 'Email veya şifre hatalı'});
+      this.messageService.add({
+        severity: 'error', 
+        summary:'Error', 
+        detail: 'Email veya şifre hatalı'});
       this.loginRequest.password='';
     }
   }
