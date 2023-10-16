@@ -1,5 +1,4 @@
 export interface CategoryRequest {
-  Category_Name: string;
-  Category_Description: string;
-  //asda
+  category_Name: string;
+  category_Description: string;
 }

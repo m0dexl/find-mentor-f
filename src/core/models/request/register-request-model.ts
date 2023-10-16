@@ -3,6 +3,5 @@ export interface RegisterRequest {
     UserName: string;
     Password: string;
     fullName: string;
-  }
-  
-  
+    userType: number;
+}
