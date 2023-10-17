@@ -1,4 +1,4 @@
-<section class="page-section">
+<section class="page-section" *ngFor="let notice of notices">
   <div class="containerads">
     <div class="itemsads">
       <div class="photoads">
@@ -8,22 +8,16 @@
         />
       </div>
       <div class="leftads" id="fullads">
-        <div class="social-iconsads">
-          <p class="share-btnads">Yazılım</p>
-
-        </div>
         <div class="leftads" id="fullads">
             <div class="social-iconsads">
                 <p class="share-btnads">
-                    Yazılım
+                    {{notice.noticeTitle}}
                 </p>
                 
-                <p class="share-btnads">
-                    Dotnet
+                <p class="portfolio-caption-subheading text-muted">
+                    {{notice.noticeCategoryName}}
                 </p>
-                <p class="share-btnads">
-                    Angular
-                </p>
+               
             </div>
             <div class="buttonsads">
                 <a href="" class="contactads" href="/iletisim">İletişime geç</a>
@@ -33,21 +27,9 @@
     </div>
     <div class="rightads">
       <p class="adsp">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
+          {{notice.noticeDescription}}
       </p>
-      <p class="adsp">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
-      </p>
-      <p class="adsp">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
-      </p>
+   
     </div>
   </div>
 </section>

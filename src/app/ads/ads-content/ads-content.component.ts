@@ -20,6 +20,7 @@ export class AdsContentComponent {
   refresh(){
     this.apiService.getAllEntities(Notice).subscribe((response) => {
       this.notices = response.data;
+      console.log(this.notices)
     })
   }
 }
