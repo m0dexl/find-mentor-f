@@ -34,34 +34,7 @@ export class FormDetailsComponent implements OnInit{
   
   isPopupVisible = false; // Pop-up'ın görünürlüğünü kontrol etmek için bir değişken ekledik
 
-  examples = [
-    {
-      started: "vvxvfbff",
-    },
-    {
-      started: ""
-    },
-    {
-      started: ""
-    },
-    {
-      started: ""
-    },
-    {
-      started: ""
-    },
-    {
-      started: ""
-    }, {
-      started: ""
-    },
-    {
-      started: ""
-    },
-    {
-      started: ""
-    }
-  ]
+  
 
   showPopup() {
     this.isPopupVisible = true; // Detaylar düğmesine tıklandığında pop-up'ı göster
