@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/core/services/api/api.service'; 
 import { Router } from '@angular/router';
-import { mentorForm } from 'src/core/models/mentorForm.model';
+import { NoticeFormAnswer} from 'src/core/models/noticeformanswer.model';
 
 
 
@@ -16,7 +16,7 @@ export class FormDetailsComponent implements OnInit{
    
   }
 
-  mentorform: mentorForm[] = [];
+  noticeformanswer: NoticeFormAnswer[] = [];
   //selectedForm: mentorForm | null = null; // Seçilen formu saklamak için bir değişken
 
   ngOnInit() {  // Bileşen başlatıldığında otomatik olarak "refresh" fonksiyonunu çağırıyoruz.
@@ -24,9 +24,9 @@ export class FormDetailsComponent implements OnInit{
   }
 
   refresh() {  // refresh fonksiyonu, kategorileri API'den alarak bileşenin "mentorform" dizisine yerleştirir.
-    this.ApiService.getAllEntities(mentorForm).subscribe((response) => {     // API hizmetini kullanarak form cevaplarını almak için "getAllEntities" fonksiyonunu çağırıyoruz.
-      this.mentorform = response.data;     // API yanıtından gelen kategorileri "mentorform" dizisine atıyoruz.
-      console.log(this.mentorform); 
+    this.ApiService.getAllEntities(NoticeFormAnswer).subscribe((response) => {     // API hizmetini kullanarak form cevaplarını almak için "getAllEntities" fonksiyonunu çağırıyoruz.
+      this.noticeformanswer = response.data;     // API yanıtından gelen kategorileri "mentorform" dizisine atıyoruz.
+      console.log(this.noticeformanswer); 
     });
   }
   
