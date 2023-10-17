@@ -16,6 +16,7 @@
           <ul class="nav nav-pills nav-stacked flex-column">
               <li><a href="profile"> <i class="fa fa-user"></i> Profilim</a></li>
               <li class="active"><a href="profile-ads"> <i class="fa fa-calendar"></i> İlanlarım <span class="label label-warning pull-right r-activity"></span></a></li>
+              
           </ul>
       </div>
   </div>
@@ -27,7 +28,7 @@
       </div>
       <div>
           <div class="row">
-            <div class="col-md-6" *ngFor="let item of examples">
+            <div class="col-md-6" *ngFor="let item of noticeformanswer">
                 <div class="panel" >
                     <div class="panel-body">
                         <div class="bio-chart">
@@ -38,18 +39,21 @@
                             
                         </div>
                         <div class="bio-desk">
-                            <h4 class="purple">Form</h4>
-                            <p>{{item.started}}</p>
-                            <p>Ad</p>  
-                            <p>Soyad</p>
-                            <p>Mail</p>
+                            <h4 class="purple"></h4>
+                            <p> Ad: {{item.answer_Name}}</p>
+                            <p>Soyad: {{item.answer_Surname}}</p>  
+                            <p>Mail: {{item.answer_Email}}</p>
+                            <p>Telefon: {{item.answer_Phone}}</p>
                          
                             <button (click)="showPopup()" class="details-button">Detaylar</button>
                             <div *ngIf="isPopupVisible" class="popup">
                                 <div class="popup-content">
                                     <span (click)="closePopup()" class="close-popup">&times;</span>
-                                    <h2>{{item.started}}</h2>
-                                    <p>{{item.started}}</p>
+                                    <!-- <h2>{{item.answer_Name}}</h2> -->
+                                    <h3>Sorular</h3>
+                                    <p>Kendinden bahseder misin? {{item.answer_AboutYourself}}</p>
+                                    <p>Nelerde gelişmek istiyorsun? {{item.answer_YourGoal}}</p>
+                                    <p>Mentora soruların var mı? {{item.answer_ToMentor}}</p>
                                 </div>
                             </div>
                         </div>
