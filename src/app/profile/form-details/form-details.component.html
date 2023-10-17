@@ -43,21 +43,28 @@
                             <p>Ad</p>  
                             <p>Soyad</p>
                             <p>Mail</p>
-                            
+                         
                             <button (click)="showPopup()" class="details-button">Detaylar</button>
+                            <div *ngIf="isPopupVisible" class="popup">
+                                <div class="popup-content">
+                                    <span (click)="closePopup()" class="close-popup">&times;</span>
+                                    <h2>{{item.started}}</h2>
+                                    <p>{{item.started}}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             
             <!-- Pop-up İçeriği -->
-            <div *ngIf="isPopupVisible" class="popup">
+            <!-- <div *ngIf="isPopupVisible" class="popup">
                 <div class="popup-content">
                     <span (click)="closePopup()" class="close-popup">&times;</span>
                     <h2>Detaylar</h2>
                     <p>Buraya pop-up içeriğini ekleyin.</p>
                 </div>
-            </div>
+            </div> -->
           </div>
       </div>
   </div>
