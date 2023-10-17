@@ -1,9 +1,7 @@
 export class Notice {
     id: number = 0;
-    MentorId: number = 0;
-    NoticeTitle: string = "";
-    NoticeDescription: string = "";
-    NoticeCategoryName: string = "";
-    NoticeMentorPhoto:any;
-
+    mentorUser_Id: number = 0;
+    noticeTitle: string = "";
+    noticeDescription: string = "";
+    noticeCategoryName: string = "";
 }

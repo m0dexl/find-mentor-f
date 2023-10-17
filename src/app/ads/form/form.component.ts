@@ -1,33 +1,61 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/core/services/api/api.service'; 
+import { Component } from '@angular/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import {Answer} from 'src/core/models/answer.model'
+import { ResponseStatus } from 'src/core/models/response/base-response-model';
+import { ApiService } from 'src/core/services/api/api.service';
+import { NoticeFormAnswerRequest } from 'src/core/models/request/noticeformanswer-request-model';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  styleUrls: ['./form.component.scss'],
+  providers: [MessageService, ConfirmationService],
 })
-export class FormComponent implements OnInit{
+export class FormComponent {
+  public formAnswerRequest: NoticeFormAnswerRequest = <NoticeFormAnswerRequest>{};
 
-  constructor(private ApiService: ApiService, 
-    private router: Router) {
-   
+  constructor(
+    private readonly apiService: ApiService,
+    private readonly router: Router,
+    private messageService: MessageService
+  ) {}
+
+  async formAnswer() {
+    this.apiService.formAnswer(this.formAnswerRequest).subscribe(
+      (response) => {
+        if (response.status === ResponseStatus.Ok) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Başarılı',
+            detail: 'Form yanıtları başarıyla gönderildi',
+          });
+         
+        } else if (response.status === ResponseStatus.Invalid) {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Hata',
+            detail: 'Geçersiz form yanıtları',
+          });
+          
+        } else {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Hata',
+            detail: 'Beklenmeyen bir hata oluştu',
+          });
+          
+        }
+      },
+      (error) => {
+        console.error('API çağrısı sırasında bir hata oluştu', error);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Hata',
+          detail: 'API çağrısı sırasında bir hata oluştu',
+        });
+        
+      }
+    );
   }
-
-  answer: Answer[] = [];
-
-  ngOnInit() {  // Bileşen başlatıldığında otomatik olarak "refresh" fonksiyonunu çağırıyoruz.
-    this.refresh();
-  }
-
-  refresh() {  
-    this.ApiService.getAllEntities(Answer).subscribe((response) => {     
-      this.answer = response.data;     
-      console.log(this.answer); 
-    });
-  }
-
-  //
-
 }
+

@@ -13,8 +13,8 @@ import { RegisterRequest } from 'src/core/models/request/register-request-model'
 import { User } from 'src/core/models/user.model';
 import { BaseResponse } from 'src/core/models/response/base-response-model';
 import { Notice } from 'src/core/models/notice.model';
-import { Categories } from 'src/core/models/categories.model';
-import { Answer } from 'src/core/models/answer.model';
+import { Category } from 'src/core/models/category.model';
+import { NoticeFormAnswerRequest } from 'src/core/models/request/noticeformanswer-request-model';
 
 
 @Injectable({
@@ -103,7 +103,7 @@ export class ApiService {
 
   getProfileInfo(): Observable<BaseDataResponse<User>> {
     return this.http
-      .get<BaseDataResponse<User>>(this.endpoint + '/User/GetAll')
+      .get<BaseDataResponse<User>>(this.endpoint + '/Auth/GetProfileInfo')
       .pipe(
         map((result) => {
           return result;
@@ -133,7 +133,8 @@ export class ApiService {
       .pipe(share());
   }
 
-  getNoticeInfo(): Observable<BaseDataResponse<Notice>> {  //ilanları getir
+  getNoticeInfo(): Observable<BaseDataResponse<Notice>> {
+    //ilanları getir
     return this.http
       .get<BaseDataResponse<Notice>>(this.endpoint + '/Auth/GetNoticeInfo') //endpoint değişecek
       .pipe(
@@ -143,26 +144,42 @@ export class ApiService {
       );
   }
 
-  getCategoriesInfo(): Observable<BaseDataResponse<Categories>> {  //Kategorileri getir
+  getCategoryInfo(): Observable<BaseDataResponse<Category>> {
+    //Kategorileri getir
     return this.http
-      .get<BaseDataResponse<Categories>>(this.endpoint + '/Auth/GetCategoriesInfo') //endpoint değişecek
+      .get<BaseDataResponse<Category>>(
+        this.endpoint + '/Auth/GetCategoryInfo'
+      ) //endpoint değişecek
       .pipe(
         map((result) => {
           return result;
         })
       );
   }
-   //form cevaplarını Getir
-   getAnswerInfo(): Observable<BaseDataResponse<Answer>> {
+  //form cevaplarını Getir
+  getAnswerInfo(): Observable<BaseDataResponse<NoticeFormAnswerRequest>> {
     return this.http
-      .get<BaseDataResponse<Answer>>(this.endpoint + '/Auth/AnswerInfo')
+      .get<BaseDataResponse<NoticeFormAnswerRequest>>(this.endpoint + '/Auth/AnswerInfo')
       .pipe(
         map((result) => {
           return result;
         })
       );
   }
-
+  formAnswer(     //form cevaplarını gönder
+    request: NoticeFormAnswerRequest
+  ): Observable<BaseDataResponse<TokenResponse>> {
+    return this.http
+      .post<BaseDataResponse<TokenResponse>>(
+        this.endpoint + '/Form/formAnswer',  //endpoint değişecek
+        request
+      )
+      .pipe(
+        map((result) => {
+          return result;
+        })
+      );
+  }
 }
 
 /////

@@ -1,29 +1,41 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from 'src/core/services/api/api.service'; 
+import { ApiService } from 'src/core/services/api/api.service';
 import { Router } from '@angular/router';
-import { Categories } from 'src/core/models/categories.model'; 
+import { Category } from 'src/core/models/category.model';
 
 @Component({
   selector: 'app-category',
-  templateUrl: './category.component.html', 
-  styleUrls: ['./category.component.scss'], 
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss'],
 })
 export class CategoryComponent implements OnInit {
-  constructor(private ApiService: ApiService, 
-    private router: Router) {
-   
-  }
+  constructor(private apiService: ApiService, private router: Router) {}
 
-  categories: Categories[] = []; // Kategorileri depolamak için bir dizi tanımlaması
+  categories: Category[] = []; // Kategorileri depolamak için bir dizi tanımlaması
 
   ngOnInit() {  // Bileşen başlatıldığında otomatik olarak "refresh" fonksiyonunu çağırıyoruz.
     this.refresh();
   }
 
   refresh() {  // refresh fonksiyonu, kategorileri API'den alarak bileşenin "categories" dizisine yerleştirir.
-    this.ApiService.getAllEntities(Categories).subscribe((response) => {     // API hizmetini kullanarak kategorileri almak için "getAllEntities" fonksiyonunu çağırıyoruz.
-      this.categories = response.data;     // API yanıtından gelen kategorileri "categories" dizisine atıyoruz.
-      console.log(this.categories); 
+    this.apiService.getAllEntities(Category).subscribe((response) => {
+      // API hizmetini kullanarak kategorileri almak için "getAllEntities" fonksiyonunu çağırıyoruz.
+      this.categories = response.data; // API yanıtından gelen kategorileri "categories" dizisine atıyoruz.
+
+      // Büyük harf yapma işlemi
+      this.categories = this.categories.map((category) => {
+        return {
+          ...category,
+          category_Name:
+            category.category_Name.charAt(0).toLocaleUpperCase('tr') +
+            category.category_Name.slice(1),
+          category_Description:
+            category.category_Description.charAt(0).toLocaleUpperCase('tr') +
+            category.category_Description.slice(1),
+        };
+      });
+
+      console.log(this.categories);
     });
   }
 }
