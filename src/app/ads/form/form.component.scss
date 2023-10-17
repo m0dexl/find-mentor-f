@@ -114,3 +114,39 @@
   .formbold-btn:hover {
     box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
   }
+  /* Form Input Borders */
+.formbold-form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc; /* Border ekledik */
+  border-radius: 5px;
+  font-size: 16px;
+  color: #07074D;
+  background: #FFFFFF;
+  outline: none;
+  resize: none;
+}
+
+/* Form Input Placeholder Color */
+.formbold-form-input::placeholder {
+  color: #536387;
+}
+
+/* Form Input Focus Border Color */
+.formbold-form-input:focus {
+  border-color: #6A64F1;
+}
+/* Form Container Border */
+.formbold-form-wrapper {
+  border: 2px solid #ccc; /* Formun etrafına border ekledik */
+  border-radius: 5px; /* Kenarları yuvarladık */
+  padding: 20px; /* İçeriği kenarlıktan uzaklaştırmak için iç boşluk ekledik */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Hafif bir gölgelendirme ekledik */
+  margin-top: 20px;
+ 
+}
+
+.app-navbar {
+  margin-bottom: 20px; /* Navbarın alt tarafındaki boşluğu ayarlayın */
+}
+
