@@ -12,16 +12,15 @@
                 <h3 class="mb-4">Giriş Yap</h3>
               </div>
             </div>
-            <form action="#" class="signin-form" (ngSubmit)="login()">
+            <form class="signin-form">
               <div class="form-group mb-3">
-                <label class="label" for="mail">E-mail</label>
+                <label class="label" for="text">Kullanıcı Adı</label>
                 <input
                   type="text"
                   class="form-control"
                   required
-                  [(ngModel)]="loginRequest.userName"
-                  [ngModelOptions]="{ standalone: true }"
-                  name="email"
+                  [(ngModel)]="loginRequest.UserName"
+                  name="username"
                 />
               </div>
               <div class="form-group mb-3">
@@ -30,8 +29,7 @@
                   type="password"
                   class="form-control"
                   required
-                  [(ngModel)]="loginRequest.password"
-                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="loginRequest.Password"
                   name="password"
                 />
               </div>
