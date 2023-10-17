@@ -1,110 +1,109 @@
-<!-- <div class="formbold-main-wrapper">
-
-    <div class="formbold-form-wrapper">
-      <form action="https://formbold.com/s/FORM_ID" method="POST" (ngSubmit)="formAnswer()">
-          <div class="formbold-input-flex">
-            <div>
-                <input
-                type="text"
-                name="firstname"
-                id="firstname"
-                placeholder="Jane"
-                class="formbold-form-input"
-                [(ngModel)]="NoticeFormAnswer.answer_Name"
-                [ngModelOptions]="{ standalone: true }"
-                />
-                <label for="firstname" class="formbold-form-label"> Ad </label>
-            </div>
-            <div>
-                <input
-                type="text"
-                name="lastname"
-                id="lastname"
-                placeholder="Cooper"
-                class="formbold-form-input"
-                [(ngModel)]="NoticeFormAnswer.answer_Surname"
-                [ngModelOptions]="{ standalone: true }"
-              
-                />
-                <label for="lastname" class="formbold-form-label"> Soyad </label>
-            </div>
-          </div>
-  
-          <div class="formbold-input-flex">
-            <div>
-                <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="jhon@mail.com"
-                class="formbold-form-input"
-                [(ngModel)]="NoticeFormAnswer.answer_Email"
-                [ngModelOptions]="{ standalone: true }"
-                
-                />
-                <label for="email" class="formbold-form-label"> Mail </label>
-            </div>
-            <div>
-                <input
-                type="text"
-                name="phone"
-                id="phone"
-                placeholder="(319) 555-0115"
-                class="formbold-form-input"
-                [(ngModel)]="NoticeFormAnswer.answer_Phone"
-                [ngModelOptions]="{ standalone: true }"
-                
-                />
-                <label for="phone" class="formbold-form-label"> Telefon </label>
-            </div>
-          </div>
-  
-          <div class="formbold-textarea">
-              <textarea
-                  rows="1"
-                  name="message"
-                  id="message"
-                  placeholder="Mesajını yaz..."
-                  class="formbold-form-input"
-                [(ngModel)]="NoticeFormAnswer.answer_AboutYourself"
-                [ngModelOptions]="{ standalone: true }"
-              ></textarea>
-              <label for="message" class="formbold-form-label"> Kendinden bahseder misin? </label>
-          </div>
-
-          <div class="formbold-textarea">
-            <textarea
-                rows="1"
-                name="message"
-                id="message"
-                placeholder="Mesajını yaz..."
-                class="formbold-form-input"
-                [(ngModel)]="NoticeFormAnswer.answer_YourGoal"
-                [ngModelOptions]="{ standalone: true }"
-            ></textarea>
-            <label for="message" class="formbold-form-label"> Nelerde gelişmek istiyorsun? </label>
+<div class="formbold-main-wrapper">
+  <div class="formbold-form-wrapper">
+    <form
+      action="https://formbold.com/s/FORM_ID"
+      method="POST"
+      (ngSubmit)="formAnswer()"
+    >
+      <div class="formbold-input-flex">
+        <div>
+          <input
+            type="text"
+            name="firstname"
+            id="firstname"
+            placeholder="Jane"
+            class="formbold-form-input"
+            [(ngModel)]="noticeFormAnswerRequest.answer_Name"
+          />
+          <label for="firstname" class="formbold-form-label"> Ad </label>
         </div>
-
-        <div class="formbold-textarea">
-            <textarea
-                rows="1"
-                name="message"
-                id="message"
-                placeholder="Mesajını yaz..."
-                class="formbold-form-input"
-                [(ngModel)]="NoticeFormAnswer.answer_ToMentor"
-                [ngModelOptions]="{ standalone: true }"
-            ></textarea>
-            <label for="message" class="formbold-form-label"> Mentora soruların var mı? </label>
+        <div>
+          <input
+            type="text"
+            name="lastname"
+            id="lastname"
+            placeholder="Cooper"
+            class="formbold-form-input"
+            [(ngModel)]="noticeFormAnswerRequest.answer_Surname"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <label for="lastname" class="formbold-form-label"> Soyad </label>
         </div>
+      </div>
 
+      <div class="formbold-input-flex">
+        <div>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="jhon@mail.com"
+            class="formbold-form-input"
+            [(ngModel)]="noticeFormAnswerRequest.answer_Email"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <label for="email" class="formbold-form-label"> Mail </label>
+        </div>
+        <div>
+          <input
+            type="text"
+            name="phone"
+            id="phone"
+            placeholder="(319) 555-0115"
+            class="formbold-form-input"
+            [(ngModel)]="noticeFormAnswerRequest.answer_Phone"
+            [ngModelOptions]="{ standalone: true }"
+          />
+          <label for="phone" class="formbold-form-label"> Telefon </label>
+        </div>
+      </div>
 
-  
-          <button class="formbold-btn" (click)="formAnswer()">
-              Send Message
-          </button>
-      </form>
+      <div class="formbold-textarea">
+        <textarea
+          rows="1"
+          name="message"
+          id="message"
+          placeholder="Mesajını yaz..."
+          class="formbold-form-input"
+          [(ngModel)]="noticeFormAnswerRequest.answer_AboutYourself"
+          [ngModelOptions]="{ standalone: true }"
+        ></textarea>
+        <label for="message" class="formbold-form-label">
+          Kendinden bahseder misin?
+        </label>
+      </div>
 
-      
-    </div>
-  </div> -->
+      <div class="formbold-textarea">
+        <textarea
+          rows="1"
+          name="message"
+          id="message"
+          placeholder="Mesajını yaz..."
+          class="formbold-form-input"
+          [(ngModel)]="noticeFormAnswerRequest.answer_YourGoal"
+          [ngModelOptions]="{ standalone: true }"
+        ></textarea>
+        <label for="message" class="formbold-form-label">
+          Nelerde gelişmek istiyorsun?
+        </label>
+      </div>
+
+      <div class="formbold-textarea">
+        <textarea
+          rows="1"
+          name="message"
+          id="message"
+          placeholder="Mesajını yaz..."
+          class="formbold-form-input"
+          [(ngModel)]="noticeFormAnswerRequest.answer_ToMentor"
+          [ngModelOptions]="{ standalone: true }"
+        ></textarea>
+        <label for="message" class="formbold-form-label">
+          Mentora soruların var mı?
+        </label>
+      </div>
+
+      <button class="formbold-btn" (click)="formAnswer()">Send Message</button>
+    </form>
+  </div>
+</div>

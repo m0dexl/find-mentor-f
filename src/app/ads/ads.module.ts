@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeModule } from '../home/home.module';
-import { FormsModule } from '@angular/forms';
 import { AdsComponent } from './ads/ads.component';
 import { AdsContentComponent } from './ads-content/ads-content.component';
+import { FormsModule } from '@angular/forms';
+import { FormComponent } from './form/form.component';
 
 
 
@@ -11,7 +12,7 @@ import { AdsContentComponent } from './ads-content/ads-content.component';
   declarations: [
     AdsComponent,
     AdsContentComponent,
-  
+    FormComponent
     ],
   imports: [
     CommonModule,
@@ -20,3 +21,5 @@ import { AdsContentComponent } from './ads-content/ads-content.component';
   ]
 })
 export class AdsModule { }
+
+//asdad

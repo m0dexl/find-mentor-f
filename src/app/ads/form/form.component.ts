@@ -12,7 +12,7 @@ import { NoticeFormAnswerRequest } from 'src/core/models/request/noticeformanswe
   providers: [MessageService, ConfirmationService],
 })
 export class FormComponent {
-  public formAnswerRequest: NoticeFormAnswerRequest = <NoticeFormAnswerRequest>{};
+  public noticeFormAnswerRequest: NoticeFormAnswerRequest = <NoticeFormAnswerRequest>{};
 
   constructor(
     private readonly apiService: ApiService,
@@ -21,7 +21,7 @@ export class FormComponent {
   ) {}
 
   async formAnswer() {
-    this.apiService.formAnswer(this.formAnswerRequest).subscribe(
+    this.apiService.formAnswer(this.noticeFormAnswerRequest).subscribe(
       (response) => {
         if (response.status === ResponseStatus.Ok) {
           this.messageService.add({
