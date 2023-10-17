@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Notice } from 'src/core/models/notice.model';
+import { NoticeRequest } from 'src/core/models/request/notice-request-model';
 import { ApiService } from 'src/core/services/api/api.service';
 
 @Component({
@@ -13,6 +14,8 @@ export class FormDetailsPopUpComponent implements OnInit {
     private router: Router) {}
 
   notices: Notice[] = [];  //ilanları depolamak için dizi
+
+  public noticeRequest : NoticeRequest = <NoticeRequest>{};
 
   ngOnInit() {  //sayfa yüklendiğinde çalışacak fonksiyon
     this.refreshData();
@@ -58,15 +61,11 @@ export class FormDetailsPopUpComponent implements OnInit {
     this.ilanEkleVisible = !this.ilanEkleVisible;
   }
 
-  ilanSil() {
-    if (confirm('İlanı silmek istediğinizden emin misiniz?')) {
-      // Silme işlemi burada gerçekleştirilebilir
-      this.ilanAdi = '';
-      this.ilanKategorisi = '';
-      this.ilanTarihi = '';
-      this.isPopupVisible = true;
-      this.isEditing = false;
-    }
+  noticess = this.notices[0];
+
+  ilanSil(id:number) {
+    this.apiService.deleteEntity(id,Notice)
+
   }
 
   duzenleIlan() {

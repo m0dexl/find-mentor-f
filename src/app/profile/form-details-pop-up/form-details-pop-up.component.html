@@ -46,16 +46,16 @@
           </div>
 
           <div *ngIf="!isPopupVisible" class="ilanPopup">
-            <div class="ilanPopup-content">
+            <div class="ilanPopup-content" *ngFor="let notice of notices">
               <span (click)="closePopup()" class="ilanClose-popup"
                 >&times;</span
               >
 
               <!-- İlan Bilgileri -->
               <div class="ilanBilgileri" *ngIf="!isEditing">
-                <p>İlan Adı: {{ ilanAdi }}</p>
-                <p>İlan Kategorisi: {{ ilanKategorisi }}</p>
-                <p>İlan Tarihi: {{ ilanTarihi }}</p>
+                <p>İlan Adı: {{ notice.noticeTitle }}</p>
+                <p>İlan Kategorisi: {{ notice.noticeCategoryName }}</p>
+                <p>İlan Açıklaması: {{ notice.noticeDescription }}</p>
               </div>
 
               <!-- Düzenleme Modu -->
@@ -98,7 +98,9 @@
 
               <!-- Düzenleme ve Silme Butonları (Düzenleme Modu Kapalıysa Göster) -->
               <div *ngIf="!isEditing" class="buttons">
-                <button class="ilanSil" (click)="ilanSil()">İlan Sil</button>
+                <button class="ilanSil" (click)="ilanSil(notice.id)">
+                  İlan Sil
+                </button>
                 <button class="ilanDuzenle" (click)="duzenleIlan()">
                   İlan Düzenle
                 </button>
@@ -148,16 +150,4 @@
       </div>
     </div>
   </div>
-</div>
-
-
-<div *ngIf="notices.length > 0" class="ilanListesi">    <!--Dizi boş değilse ilanları getir-->
-  <h4>İlanlarım</h4>
-  <ul>
-    <li *ngFor="let notice of notices">   <!--İlanları listele-->
-      <p>İlan Adı: {{notice.noticeTitle}}</p>
-      <p>İlan Kategorisi: {{ notice.noticeCategoryName }}</p>
-      <p>İlan Açıklaması: {{ notice.noticeDescription }}</p>
-    </li>
-  </ul>
 </div>
