@@ -1,77 +1,79 @@
+.containerads {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #000;
+  min-height: 300px; /* Decreased height */
+  width: 80%; /* Adjusted width */
+  margin: 20px auto; /* Centered horizontally */
+  padding: 20px;
+  border-radius: 15px; /* Reduced border-radius */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: rgba(255, 255, 255, 0.25);
+  z-index: 10;
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
 
-.containerads{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: 1px solid #000;
-	min-height: 350px;
-	margin: auto;
-	max-width: 1000px;
-	padding: 40px;
-	border-radius: 20px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background: rgba(255, 255, 255, 0.25);
-    z-index: 10;
-	backdrop-filter: blur(25px);
-    border: 1px solid rgba(255,255,255,0.5);
+.imgads {
+  height: 80px; /* Adjusted image height */
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.5);
 }
-.imgads{
-	height: 100px;
-	border-radius: 50px;
-	border: 5px solid rgba(255,255,255,0.5);
+
+.social-iconsads {
+  display: inline-flex;
+  justify-content: space-around;
+  align-content: space-between;
+  width: 100%;
+  float: left;
+  padding: 20px; /* Reduced padding */
 }
-.photoads{
-	display: flex;
-	width: 100%;
-	justify-content: center;
-	padding: 20px;
-}
-.social-iconsads{
-	display: inline-flex;
-	justify-content: space-around;
-	align-content: space-between;
-	width: 100%;
-	float: left;
-	padding: 50px;
-}
+
 .share-btnads {
-	cursor: pointer;
-	font-size: 30px;
-	color: #000;
-}
-.buttonsads{
-	display: inline-flex;
-	justify-content: space-around;
-	align-content: space-between;
-	width: 100%;
-	float: left;
-	padding: 20px;
-}
-.contactads, .downloadads{
-	text-decoration: none;
-	text-align: center;
-	border-radius: 5px;
-	width: 150px;
-    cursor: pointer;
-    padding: 15px;
-    font-weight: 900;
-    color: #000;
-    background: rgba(255,255,255,.3);
-    border: 1px solid rgba(255,255,255,0.5);
-}
-.contactads:hover, 
-.downloadads:hover{
-	background: rgba(255,255,255,.8);
+  cursor: pointer;
+  font-size: 20px; /* Reduced font size */
+  color: #ffcc00; /* Yellow color */
 }
 
-.rightads{
-	width: 60%;
-	border-radius: 20px;
-	padding: 25px;
-	float: right;
-	text-align: justify;
-    text-justify: inter-word;
-    background: rgba(255,255,255,.3);
+.buttonsads {
+  display: inline-flex;
+  justify-content: space-around;
+  align-content: space-between;
+  width: 100%;
+  float: left;
+  padding: 10px; /* Reduced padding */
+}
+
+.contactads {
+  text-decoration: none;
+  text-align: center;
+  border-radius: 5px;
+  width: 100px; /* Adjusted button width */
+  cursor: pointer;
+  padding: 10px; /* Reduced padding */
+  font-weight: 900;
+  color: #ffcc00; /* Yellow color */
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.contactads:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.rightads {
+  width: 40%; 
+  border-radius: 15px;
+  padding: 15px; 
+  float: right;
+  text-align: justify;
+  text-justify: inter-word;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 
+.footer{
+	position: fixed;
+	bottom: 0;
+}
