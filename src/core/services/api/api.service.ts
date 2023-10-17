@@ -171,7 +171,7 @@ export class ApiService {
   ): Observable<BaseDataResponse<TokenResponse>> {
     return this.http
       .post<BaseDataResponse<TokenResponse>>(
-        this.endpoint + '/Form/formAnswer',  //endpoint değişecek
+        this.endpoint + '/NoticeFormAnswer/Create',  //endpoint değişecek
         request
       )
       .pipe(
