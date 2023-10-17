@@ -13,9 +13,8 @@ import { RegisterRequest } from 'src/core/models/request/register-request-model'
 import { User } from 'src/core/models/user.model';
 import { BaseResponse } from 'src/core/models/response/base-response-model';
 import { Notice } from 'src/core/models/notice.model';
-import { Answer } from 'src/core/models/answer.model';
-import { formAnswerRequest } from 'src/core/models/request/form-answer-request-model';
 import { Category } from 'src/core/models/category.model';
+import { NoticeFormAnswerRequest } from 'src/core/models/request/noticeformanswer-request-model';
 
 
 @Injectable({
@@ -158,9 +157,9 @@ export class ApiService {
       );
   }
   //form cevaplarını Getir
-  getAnswerInfo(): Observable<BaseDataResponse<Answer>> {
+  getAnswerInfo(): Observable<BaseDataResponse<NoticeFormAnswerRequest>> {
     return this.http
-      .get<BaseDataResponse<Answer>>(this.endpoint + '/Auth/AnswerInfo')
+      .get<BaseDataResponse<NoticeFormAnswerRequest>>(this.endpoint + '/Auth/AnswerInfo')
       .pipe(
         map((result) => {
           return result;
@@ -168,7 +167,7 @@ export class ApiService {
       );
   }
   formAnswer(     //form cevaplarını gönder
-    request: formAnswerRequest
+    request: NoticeFormAnswerRequest
   ): Observable<BaseDataResponse<TokenResponse>> {
     return this.http
       .post<BaseDataResponse<TokenResponse>>(

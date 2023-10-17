@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ResponseStatus } from 'src/core/models/response/base-response-model';
-import { formAnswerRequest } from 'src/core/models/request/form-answer-request-model';
 import { ApiService } from 'src/core/services/api/api.service';
+import { NoticeFormAnswerRequest } from 'src/core/models/request/noticeformanswer-request-model';
 
 @Component({
   selector: 'app-form',
@@ -12,7 +12,7 @@ import { ApiService } from 'src/core/services/api/api.service';
   providers: [MessageService, ConfirmationService],
 })
 export class FormComponent {
-  public formAnswerRequest: formAnswerRequest = <formAnswerRequest>{};
+  public formAnswerRequest: NoticeFormAnswerRequest = <NoticeFormAnswerRequest>{};
 
   constructor(
     private readonly apiService: ApiService,
