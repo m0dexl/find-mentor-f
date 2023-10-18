@@ -14,16 +14,26 @@ export class FormDetailsPopUpComponent implements OnInit {
     private router: Router) {}
 
   notices: Notice[] = [];  //ilanları depolamak için dizi
+  noticee : Notice | undefined;
 
   public noticeRequest : NoticeRequest = <NoticeRequest>{};
 
   ngOnInit() {  //sayfa yüklendiğinde çalışacak fonksiyon
-    this.refreshData();
+    this.getNoticeById(3);
+  }
+
+  getNoticeById(id:number){
+    this.apiService.getEntityById(id,Notice).then((response: any) =>{
+      this.noticee = response?.data;
+      console.log(response?.data)
+    });
   }
 
   refreshData() {  //ilanları apiden alarak bileşenin notices dizisine yerleştirir
     this.apiService.getAllEntities(Notice).subscribe((response) => {   //getallentites kullanarak tüm ilanları çağırıyoruz
       this.notices = response.data;   //apiden gelen yanıtı notices dizisine atıyoruz
+      console.log(response.data[0]);
+      console.log("---------")
       console.log(this.notices);
     });
   }

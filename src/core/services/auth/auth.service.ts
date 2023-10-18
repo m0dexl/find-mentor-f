@@ -31,40 +31,60 @@ export class AuthService {
 
  // Kullanıcı girişi işlemi
   //Kullanıcıların oturum açma isteklerini işlerken, alınan yanıtları ve kullanıcı bilgilerini günceller.
-  public async login(request: LoginRequest): Promise<ResponseStatus> {
-    const loginResponse = await this.apiService.login(request).toPromise();// API üzerinden kullanıcı girişini yapar.
+  // public async login(request: LoginRequest): Promise<ResponseStatus> {
+  //   const loginResponse = await this.apiService.login(request).toPromise();
 
-   //oturum açma işleminin sonucunu status adlı bir değişkende saklar ve bu değişken daha sonra oturum açma işleminin sonucunu değerlendirmek için kullanılır.
-    let status = loginResponse!.status;
+  //   let status = loginResponse!.status;
 
-  //oturum açma işleminin sonucunu kontrol etmek ve oturumun başarılı olup olmadığını belirlemek için kullanılır.
-    if(status == ResponseStatus.Ok) {
-      this.setToken(loginResponse!.data); //oturum açma işlemi başarılıysa oturum açma işlemi sonucunda elde edilen token bilgisini saklar.
-  
+  //   if (status == ResponseStatus.Ok) {
+  //     this.setToken(loginResponse!.data);
 
-      const profileResponse = await this.apiService // kullanıcının profil bilgilerini sunucudan almak için bir API çağrısı yapar ve bu bilgileri profileResponse değişkeninde saklar. 
-      .getProfileInfo()
-      .toPromise(); //kullanıcının profil bilgilerini getirmek için başlatılan Observable'ın sonucunu bir Promise'e dönüştürür. 
-      //bu, profil bilgilerini almak ve bu bilgileri işlemek için kullanılır. 
+  //     const profileResponse = await this.apiService
+  //       .getProfileInfo()
+  //       .toPromise();
+  //   // console.log("sad")
 
-      status = profileResponse!.status; //profil bilgileri alma işleminin sonucunu status adlı bir değişkende saklar 
-  
+  //     status = profileResponse!.status;
 
-      if(status == ResponseStatus.Ok){ //profil bilgilerini alma işleminin sonucunu kontrol eder ve eğer bu işlem başarılı ise, belirtilen kod bloğunu çalıştırır. 
+  //     if (status == ResponseStatus.Ok) {
+  //       sessionStorage.setItem('current_user', JSON.stringify(profileResponse!.data));
 
-        //Başarılı bir şekilde profil bilgilerini alındığında, bu bilgileri kullanıcının oturum süresince saklamak amacıyla sessionStorage içine kaydeder.
-        //Bu, kullanıcı oturum sırasında bu bilgilere ihtiyaç duyulduğunda kolayca erişilebilmesini sağlar.
-        sessionStorage.setItem('current_user', JSON.stringify(profileResponse!.data))
+  //       this.currentUserSubject.next(profileResponse!.data);
+  //     } else {
+  //       await this.logOut();
+  //     }
+  //   }
 
-        //Kullanıcının oturum bilgilerini güncellemek ve bu güncellenmiş bilgileri diğer bileşenlerle paylaşmak için kullanılır.
-        //Özellikle, kullanıcı oturum açtığında veya oturumu kapattığında bu kod parçası kullanılır. 
-        this.currentUserSubject.next(profileResponse!.data);
-      } else{
-        await this.logOut(); //oturum açma başarısızsa oturumu sonlandırır.
-      }
+  //   return status;
+  // }
+
+  public async login (request: LoginRequest): Promise<ResponseStatus> {
+    const LoginResponse = await this.apiService.login(request).toPromise();
+
+    let status = LoginResponse!.status;
+
+    if(status == ResponseStatus.Ok){
+      await this.setUserInfo(LoginResponse?.data!);
     }
-    return status; //login fonksiyonun sonucunu temsil eden bir değeri döndürür. 
-    //Bu değer, çağrıldığı yerde işlemin başarılı olup olmadığını veya olası hataları belirlemek için kullanılır.
+
+    return status;
+  }
+
+  async setUserInfo(token: TokenResponse){
+    this.setToken(token);
+
+    const userProfileResponse = await this.apiService.getProfileInfo().toPromise();
+
+    let status = userProfileResponse?.status;
+
+    const userProfile = userProfileResponse?.data;
+
+    if(status == ResponseStatus.Ok && userProfile){
+        sessionStorage.setItem('current_user', JSON.stringify(userProfileResponse!.data));
+        this.currentUserSubject.next(userProfileResponse!.data);
+    } else {
+      await this.logOut();
+    }
   }
 
   //Bu fonksiyon, bir kayıt isteği alır ve bu isteği işleyerek bir ResponseStatus değeri içeren bir Promise döndürür.(register fonksiyonunun tanımını ve imzasını oluşturur. )

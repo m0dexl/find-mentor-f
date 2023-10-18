@@ -111,6 +111,16 @@ export class ApiService {
       );
   }
 
+  // getProfileInfo(): Observable<BaseDataResponse<User>> {
+  //   return this.http
+  //     .get<BaseDataResponse<User>>(this.endpoint + '/User/GetAll')
+  //     .pipe(
+  //       map((result) => {
+  //         return result;
+  //       })
+  //     );
+  // }
+
   refreshToken(token: string): Observable<BaseDataResponse<TokenResponse>> {
     return this.http
       .get<BaseDataResponse<TokenResponse>>(
@@ -136,7 +146,7 @@ export class ApiService {
   getNoticeInfo(): Observable<BaseDataResponse<Notice>> {
     //ilanları getir
     return this.http
-      .get<BaseDataResponse<Notice>>(this.endpoint + '/Auth/GetNoticeInfo') //endpoint değişecek
+      .get<BaseDataResponse<Notice>>(this.endpoint + '/Notice/GetById') //endpoint değişecek
       .pipe(
         map((result) => {
           return result;

@@ -31,7 +31,6 @@ export class LoginComponent {
         summary: 'Error',
         detail: 'Kullanıcı adı veya şifre hatalı',
       });
-      this.loginRequest.Password = '';
     }
   }
 }

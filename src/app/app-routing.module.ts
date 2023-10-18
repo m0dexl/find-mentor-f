@@ -25,7 +25,7 @@ const routes: Routes = [
   {path: "profile", component:ProfileComponent},
   {path: "profile-ads", component:FormDetailsComponent},
   {path: "profile-ads2", component:FormDetailsPopUpComponent},
-  {path: "iletisim", component:FormComponent}
+  {path: "contact/:id", component:FormComponent}
 
 
 ];

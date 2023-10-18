@@ -5,6 +5,7 @@ import { AdsComponent } from './ads/ads.component';
 import { AdsContentComponent } from './ads-content/ads-content.component';
 import { FormsModule } from '@angular/forms';
 import { FormComponent } from './form/form.component';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -17,7 +18,8 @@ import { FormComponent } from './form/form.component';
   imports: [
     CommonModule,
     HomeModule,
-    FormsModule
+    FormsModule,
+    RouterModule
   ]
 })
 export class AdsModule { }
