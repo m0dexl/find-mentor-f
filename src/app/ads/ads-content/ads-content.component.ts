@@ -17,10 +17,14 @@ export class AdsContentComponent {
   ngOnInit(){
     this.refresh();
   }
-  refresh(){
+   refresh() {
     this.apiService.getAllEntities(Notice).subscribe((response) => {
       this.notices = response.data;
-      console.log(this.notices)
-    })
+      // İlan başlığını ve kategori adını büyük harfe dönüştürme
+      this.notices.forEach((notice) => {
+        notice.noticeTitle = notice.noticeTitle.charAt(0).toUpperCase() + notice.noticeTitle.slice(1);
+        notice.noticeCategoryName = notice.noticeCategoryName.charAt(0).toUpperCase() + notice.noticeCategoryName.slice(1);
+      });
+    });
   }
 }

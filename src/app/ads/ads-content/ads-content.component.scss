@@ -1,79 +1,112 @@
-.containerads {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #000;
-  min-height: 300px; /* Decreased height */
-  width: 80%; /* Adjusted width */
-  margin: 20px auto; /* Centered horizontally */
-  padding: 20px;
-  border-radius: 15px; /* Reduced border-radius */
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+.containerads{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid #000;
+	min-height: 350px;
+	margin: auto ;
+	max-width: 1000px;
+	padding: 20px;
+	border-radius: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: rgba(255, 255, 255, 0.25);
   z-index: 10;
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(25px);
+  border: 1px solid #000;
 }
-
-.imgads {
-  height: 80px; /* Adjusted image height */
-  border-radius: 50%;
-  border: 3px solid rgba(255, 255, 255, 0.5);
+.imgads{
+	height: 100px;
+	border-radius: 50px;
+	border: 5px solid #f1c638;
 }
-
-.social-iconsads {
-  display: inline-flex;
-  justify-content: space-around;
-  align-content: space-between;
-  width: 100%;
-  float: left;
-  padding: 20px; /* Reduced padding */
+.photoads{
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	padding: 20px;
 }
-
+.social-iconsads{
+	display: flex;
+  flex-direction: column;
+	justify-content: space-around;
+	align-content: space-between;
+	width: 100%;
+	float: left;
+	padding: 50px;
+}
 .share-btnads {
-  cursor: pointer;
-  font-size: 20px; /* Reduced font size */
-  color: #ffcc00; /* Yellow color */
-}
-
-.buttonsads {
-  display: inline-flex;
-  justify-content: space-around;
-  align-content: space-between;
-  width: 100%;
-  float: left;
-  padding: 10px; /* Reduced padding */
-}
-
-.contactads {
-  text-decoration: none;
+	font-size: 25px;
+	color: #000;
   text-align: center;
-  border-radius: 5px;
-  width: 100px; /* Adjusted button width */
-  cursor: pointer;
-  padding: 10px; /* Reduced padding */
-  font-weight: 900;
-  color: #ffcc00; /* Yellow color */
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+.buttonsads{
+	display: inline-flex;
+	justify-content: space-around;
+	align-content: space-between;
+	width: 100%;
+	float: left;
+	padding: 20px;
+
+}
+.contactads, .downloadads{
+	text-decoration: none;
+	text-align: center;
+	border-radius: 5px;
+	min-width: 150px;
+    cursor: pointer;
+    padding: 15px;
+    font-weight: 500;
+    color: white;
+    background: #000;
+    border: 1px solid white;
+}
+.contactads:hover, 
+.downloadads:hover{
+	cursor: pointer;
 }
 
-.contactads:hover {
-  background: rgba(255, 255, 255, 0.8);
+.rightads{
+	width: 60%;
+	border-radius: 20px;
+	padding: 25px;
+	float: right;
+	text-align: justify;
+    text-justify: inter-word;
+    background: rgba(255,255,255,.3);
 }
 
-.rightads {
-  width: 40%; 
-  border-radius: 15px;
-  padding: 15px; 
-  float: right;
-  text-align: justify;
-  text-justify: inter-word;
-  background: rgba(255, 255, 255, 0.3);
+//Responsive Kodları 
+/* For screens with a max-width of 768px */
+@media (max-width: 768px) {
+  .containerads {
+    flex-direction: column; /* Stack items vertically */
+    min-height: auto; /* Remove fixed height */
+    padding: 10px; /* Adjust padding */
+  }
+  .rightads {
+    width: 100%; /* Take full width on smaller screens */
+  }
+  .imgads {
+    height: 80px; /* Adjust image size */
+  }
+  .social-iconsads {
+    padding: 10px; /* Adjust padding */
+  }
+  .share-btnads {
+    font-size: 20px; /* Adjust font size */
+  }
+  .contactads, .downloadads {
+    min-width: 120px; /* Adjust button width */
+  }
 }
 
-
-.footer{
-	position: fixed;
-	bottom: 0;
+/* For screens with a max-width of 480px */
+@media (max-width: 480px) {
+  .share-btnads {
+    font-size: 18px; /* Further reduce font size */
+  }
+  .contactads, .downloadads {
+    min-width: 100px; /* Further reduce button width */
+  }
 }
