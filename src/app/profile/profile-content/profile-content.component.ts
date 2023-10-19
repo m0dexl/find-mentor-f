@@ -1,13 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { User } from 'src/core/models/user.model';
 
 @Component({
   selector: 'app-profile-content',
   templateUrl: './profile-content.component.html',
   styleUrls: ['./profile-content.component.scss']
 })
-export class ProfileContentComponent {
+export class ProfileContentComponent implements OnInit {
+  currentUser : User = <User> {};
+  ngOnInit() {
+
+  }
   faEdit = faEdit;
+
+  constructor(){
+    const userJson = localStorage.getItem('currentUser');
+    this.currentUser = userJson !== null ? JSON.parse(userJson) : new User();
+    console.log(this.currentUser)
+    console.log("asdas")
+  }
 
   users= [
     {

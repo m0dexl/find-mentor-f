@@ -111,16 +111,6 @@ export class ApiService {
       );
   }
 
-  // getProfileInfo(): Observable<BaseDataResponse<User>> {
-  //   return this.http
-  //     .get<BaseDataResponse<User>>(this.endpoint + '/User/GetAll')
-  //     .pipe(
-  //       map((result) => {
-  //         return result;
-  //       })
-  //     );
-  // }
-
   refreshToken(token: string): Observable<BaseDataResponse<TokenResponse>> {
     return this.http
       .get<BaseDataResponse<TokenResponse>>(
@@ -191,5 +181,3 @@ export class ApiService {
       );
   }
 }
-
-/////
