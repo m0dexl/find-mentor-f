@@ -7,14 +7,14 @@
     <div class="profile-nav col-md-3">
       <div class="panel">
         <div class="user-heading round">
-          <a href="#">
+          <a>
             <img
               src="https://bootdey.com/img/Content/avatar/avatar3.png"
               alt=""
             />
           </a>
-          <h1>Camila Smith</h1>
-          <p>deydey@theEmail.com</p>
+          <h1>{{ currentUser.fullName }}</h1>
+          <p>{{ currentUser.email }}</p>
         </div>
 
         <ul class="nav nav-pills nav-stacked flex-column">
@@ -62,10 +62,10 @@
         </div>
         <div class="panel-body bio-graph-info">
           <h1>Biyografi</h1>
-          <div class="row" *ngFor="let user of users">
+          <div class="row">
             <div class="bio-row">
               <p *ngIf="!inputUsername">
-                <span>Username </span>: {{ user["username"] }}
+                <span>Username </span>: {{ currentUser.userName }}
                 <a (click)="showInputUsername()"
                   ><fa-icon [icon]="faEdit"></fa-icon
                 ></a>
@@ -75,21 +75,13 @@
               </p>
             </div>
             <div class="bio-row">
-              <p><span>Adınız </span>: Camila</p>
+              <p><span>Adınız </span>: {{ firstName }}</p>
             </div>
             <div class="bio-row">
-              <p><span>Kategori </span>: UI Designer</p>
-              <!--opsiyonel-->
-            </div>
-            <div class="bio-row">
-              <p><span>Soyadınız </span>: Smith</p>
+              <p><span>Soyadınız </span>: {{ lastName }}</p>
             </div>
             <div class="bio-row">
               <p><span>Email adresi </span>: jsmith@flatlab.com</p>
-            </div>
-            <div class="bio-row">
-              <p><span>Telefon no </span>: 88 (02) 123456</p>
-              <!--opsiyonel-->
             </div>
             <div class="bio-row">
               <p><span>Oluşturulma tarihi </span>: 13 July 1983</p>

@@ -9,29 +9,37 @@ import { User } from 'src/core/models/user.model';
 })
 export class ProfileContentComponent implements OnInit {
   currentUser : User = <User> {};
-  ngOnInit() {
-
-  }
+  firstName: string = "";
+  lastName: string = "";
+  
   faEdit = faEdit;
 
-  constructor(){
-    const userJson = localStorage.getItem('currentUser');
-    this.currentUser = userJson !== null ? JSON.parse(userJson) : new User();
-    console.log(this.currentUser)
-    console.log("asdas")
+  constructor(){}
+
+  ngOnInit() {
+    this.getCurrentUser();
+    this.firstName = this.getName(this.currentUser.fullName);
+    this.lastName = this.getLastname(this.currentUser.fullName);
   }
 
-  users= [
-    {
-      username: "camila",
-      name: "Camila",
-      lastname: "Smith",
-      category: "UI Designer",
-      email: "jsmith@gmail.com",
-      phoneno: 8802123456,
-      createdDate: "13 July 1983"
-    }
-  ]
+  getCurrentUser(){
+    const userJson = sessionStorage.getItem('current_user');
+    console.log(userJson)
+    this.currentUser = userJson !== null ? JSON.parse(userJson) : new User();
+    console.log("sa",this.currentUser)
+  }
+
+  getName(fullName: string){
+    const words = fullName.split(' ');
+    words.pop();
+    return words.join(' ');
+  }
+
+  getLastname(fullName: string){
+    const words = fullName.split(' ');
+    return words[words.length - 1];
+  }
+  
 
   inputUsername:boolean = false;
 
