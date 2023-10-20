@@ -1,44 +1,3 @@
-/* Temel panel stillemesi */
-// .panel {
-//     border: 1px solid #e8e8e8;
-//     border-radius: 4px;
-//     margin-bottom: 20px;
-//     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-// }
-
-// .panel-body {
-//     padding: 15px;
-// }
-
-// /* Bio Chart (Grafik) stillemesi */
-// .bio-chart {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-// }
-
-// .knob {
-//     width: 100px;
-//     height: 100px;
-//     border: 0;
-//     font-weight: bold;
-//     font-size: 20px;
-//     font-family: Arial;
-//     text-align: center;
-//     color: #cba4db;
-//     background: none;
-//     position: relative;
-//     display: inline-block;
-// }
-
-// /* Bio Desk (Açıklama) stillemesi */
-// .bio-desk {
-//     margin-top: 20px;
-// }
-
-// .purple {
-//     color: #cba4db;
-// }
 
 /* Detaylar düğmesi stillemesi */
 .details-button {
@@ -104,6 +63,7 @@ body {
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-font-smoothing: antialiased;
+    overflow: hidden;
 }
 .profile-nav, .profile-info{
     margin-top:30px;   

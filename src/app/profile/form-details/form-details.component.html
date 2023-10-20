@@ -13,8 +13,8 @@
               alt=""
             />
           </a>
-          <h1>Camila Smith</h1>
-          <p>deydey@theEmail.com</p>
+          <h1>{{ currentUser.fullName }}</h1>
+          <p>{{ currentUser.email }}</p>
         </div>
 
         <ul class="nav nav-pills nav-stacked flex-column">
@@ -30,29 +30,34 @@
         </ul>
       </div>
     </div>
+
     <div class="profile-info col-md-9">
       <div class="panel">
         <div class="bio-graph-heading">
           <h4>İlanlarım</h4>
           <br />
           <div class="buttons">
-            <button class="ilanGoruntule" (click)="showPopupNotice()">
+            <button class="ilanGoruntule" (click)="noticeDetailPopupControl()">
               İlanlarımı Görüntüle
             </button>
             <button class="ilanEkle" (click)="showIlanEkle()">İlan Ekle</button>
           </div>
 
-          <div *ngIf="!isPopupVisibleNotice" class="ilanPopup">
+          <div *ngIf="!isNoticeDetailPopupVisible" class="ilanPopup">
             <div class="ilanPopup-content">
-              <span (click)="closePopupNotice()" class="ilanClose-popup"
+              <span (click)="noticeDetailPopupControl()" class="ilanClose-popup"
                 >&times;</span
               >
 
               <!-- İlan Bilgileri -->
               <div class="ilanBilgileri" *ngIf="!isEditing">
-                <p>İlan Adı: {{ notices.noticeTitle }}</p>
-                <p>İlan Kategorisi: {{ notices.noticeCategoryName }}</p>
-                <p>İlan Açıklaması: {{ notices.noticeDescription }}</p>
+                <p>İlan Adı: {{ currentUsersNotice.noticeTitle }}</p>
+                <p>
+                  İlan Kategorisi: {{ currentUsersNotice.noticeCategoryName }}
+                </p>
+                <p>
+                  İlan Açıklaması: {{ currentUsersNotice.noticeDescription }}
+                </p>
               </div>
 
               <!-- Düzenleme Modu -->
@@ -95,7 +100,10 @@
 
               <!-- Düzenleme ve Silme Butonları (Düzenleme Modu Kapalıysa Göster) -->
               <div *ngIf="!isEditing" class="buttons">
-                <button class="ilanSil" (click)="ilanSil(notices.id)">
+                <button
+                  class="ilanSil"
+                  (click)="ilanSil(currentUsersNotice.id)"
+                >
                   İlan Sil
                 </button>
                 <button class="ilanDuzenle" (click)="duzenleIlan()">

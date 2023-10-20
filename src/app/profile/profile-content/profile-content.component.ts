@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'src/core/models/user.model';
+import { ApiService } from 'src/core/services/api/api.service';
 
 @Component({
   selector: 'app-profile-content',
@@ -8,25 +10,25 @@ import { User } from 'src/core/models/user.model';
   styleUrls: ['./profile-content.component.scss']
 })
 export class ProfileContentComponent implements OnInit {
-  currentUser : User = <User> {};
-  firstName: string = "";
-  lastName: string = "";
-  
-  faEdit = faEdit;
 
-  constructor(){}
-
+  constructor(private apiService: ApiService, 
+    private router: Router) {
+  }
   ngOnInit() {
     this.getCurrentUser();
     this.firstName = this.getName(this.currentUser.fullName);
     this.lastName = this.getLastname(this.currentUser.fullName);
   }
 
+  currentUser : User = <User> {};
+  firstName: string = "";
+  lastName: string = "";
+  
+  faEdit = faEdit;
+
   getCurrentUser(){
     const userJson = sessionStorage.getItem('current_user');
-    console.log(userJson)
     this.currentUser = userJson !== null ? JSON.parse(userJson) : new User();
-    console.log("sa",this.currentUser)
   }
 
   getName(fullName: string){
