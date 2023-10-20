@@ -10,12 +10,16 @@ import { HomeModule } from '../home/home.module';
 
 
 
+
+
 @NgModule({
   declarations: [
     ProfileComponent,
     ProfileContentComponent,
     FormDetailsComponent,
-    FormDetailsPopUpComponent
+    FormDetailsPopUpComponent,
+    
+    
   ],
   imports: [
     CommonModule,
