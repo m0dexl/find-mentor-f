@@ -77,36 +77,36 @@
 }
 
 //Responsive Kodları 
-/* For screens with a max-width of 768px */
+
 @media (max-width: 768px) {
   .containerads {
-    flex-direction: column; /* Stack items vertically */
-    min-height: auto; /* Remove fixed height */
-    padding: 10px; /* Adjust padding */
+    flex-direction: column;
+    min-height: auto; 
+    padding: 10px; 
   }
   .rightads {
-    width: 100%; /* Take full width on smaller screens */
+    width: 100%; 
   }
   .imgads {
-    height: 80px; /* Adjust image size */
+    height: 80px; 
   }
   .social-iconsads {
-    padding: 10px; /* Adjust padding */
+    padding: 10px; 
   }
   .share-btnads {
-    font-size: 20px; /* Adjust font size */
+    font-size: 20px; 
   }
   .contactads, .downloadads {
-    min-width: 120px; /* Adjust button width */
+    min-width: 120px; 
   }
 }
 
-/* For screens with a max-width of 480px */
+
 @media (max-width: 480px) {
   .share-btnads {
-    font-size: 18px; /* Further reduce font size */
+    font-size: 18px; 
   }
   .contactads, .downloadads {
-    min-width: 100px; /* Further reduce button width */
+    min-width: 100px; 
   }
 }

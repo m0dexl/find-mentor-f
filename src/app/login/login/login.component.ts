@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -20,17 +21,19 @@ export class LoginComponent {
     private messageService: MessageService
   ) {}
 
+  
   async login() {
     let status = await this.authService.login(this.loginRequest);
 
-    if (status === ResponseStatus.Ok) {
+    if (status == ResponseStatus.Ok) {
       await this.router.navigate(['../profile']);
-    } else if (status === ResponseStatus.Invalid) {
+    } else {
       this.messageService.add({
         severity: 'error',
-        summary: 'Error',
-        detail: 'Kullanıcı adı veya şifre hatalı',
-      });
+        summary: 'Hata',
+        detail: 'Kullanıcı adı veya şifre hatalı!'});
+         this.loginRequest.password = '';
     }
   }
+  
 }
