@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeModule } from '../home/home.module';
 import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HomeModule,
-    FormsModule
+    FormsModule,
+    ToastModule
   ]
 })
 export class LoginModule { }

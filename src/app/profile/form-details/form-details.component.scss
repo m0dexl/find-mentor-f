@@ -548,3 +548,75 @@ ul.summary-list > li:last-child  {
 //     margin-right: 10px; /* <p> elementleri arasında boşluk bırakmak için */
 //   }
 
+.buttons{
+    display: flex;
+    gap:10px;
+}
+
+.ilanEkle , 
+.ilanGoruntule{
+    background-color: #cba4db;
+    color: #fff;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.ilanEkle:hover, 
+.ilanGoruntule:hover{
+    background-color: gray;
+}
+
+.ilanPopup {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+.ilanPopup-content {
+  background-color: gray;
+  color:black;
+  padding: 50px;
+  max-height: 80%;
+  width:60%;
+  border:2px solid #fbc02d;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  text-align:center ;
+  overflow: hidden;
+  position: relative;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.ilanClose-popup {
+    color: #000;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.ilanClose-popup:hover {
+    color: #aaa;
+}
+.ilanPopup-hidden{
+    overflow: auto;
+}
+.ilanKaydet{
+    background-color: #fbc02d;
+    color:white;
+    float: left;
+    margin-top: 10px;
+}
+

@@ -1,77 +1,205 @@
-
-
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link
+  href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"
+  rel="stylesheet"
+/>
 <div class="container bootstrap snippets bootdey">
-<div class="row">
-  <div class="profile-nav col-md-3">
+  <div class="row">
+    <div class="profile-nav col-md-3">
       <div class="panel">
-          <div class="user-heading round">
-              <a href="#">
-                  <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="">
-              </a>
-              <h1>Camila Smith</h1>
-              <p>deydey@theEmail.com</p>
+        <div class="user-heading round">
+          <a href="#">
+            <img
+              src="https://bootdey.com/img/Content/avatar/avatar3.png"
+              alt=""
+            />
+          </a>
+          <h1>Camila Smith</h1>
+          <p>deydey@theEmail.com</p>
+        </div>
+
+        <ul class="nav nav-pills nav-stacked flex-column">
+          <li>
+            <a href="profile"> <i class="fa fa-user"></i> Profilim</a>
+          </li>
+          <li class="active">
+            <a href="profile-ads">
+              <i class="fa fa-calendar"></i> İlanlarım
+              <span class="label label-warning pull-right r-activity"></span
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="profile-info col-md-9">
+      <div class="panel">
+        <div class="bio-graph-heading">
+          <h4>İlanlarım</h4>
+          <br />
+          <div class="buttons">
+            <button class="ilanGoruntule" (click)="showPopupNotice()">
+              İlanlarımı Görüntüle
+            </button>
+            <button class="ilanEkle" (click)="showIlanEkle()">İlan Ekle</button>
           </div>
 
-          <ul class="nav nav-pills nav-stacked flex-column">
-              <li><a href="profile"> <i class="fa fa-user"></i> Profilim</a></li>
-              <li class="active"><a href="profile-ads"> <i class="fa fa-calendar"></i> İlanlarım <span class="label label-warning pull-right r-activity"></span></a></li>
-              
-          </ul>
-      </div>
-  </div>
-  <div class="profile-info col-md-9">
-      <div class="panel">
-          <div class="bio-graph-heading">
-              Aliquam ac magna metus. Nam sed arcu non tellus fringilla fringilla ut vel ispum. Aliquam ac magna metus.
+          <div *ngIf="!isPopupVisibleNotice" class="ilanPopup">
+            <div class="ilanPopup-content">
+              <span (click)="closePopupNotice()" class="ilanClose-popup"
+                >&times;</span
+              >
+
+              <!-- İlan Bilgileri -->
+              <div class="ilanBilgileri" *ngIf="!isEditing">
+                <p>İlan Adı: {{ notices.noticeTitle }}</p>
+                <p>İlan Kategorisi: {{ notices.noticeCategoryName }}</p>
+                <p>İlan Açıklaması: {{ notices.noticeDescription }}</p>
+              </div>
+
+              <!-- Düzenleme Modu -->
+              <div *ngIf="isEditing" class="form-group">
+                <label for="editIlanAdi">İlan Adı</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editedIlanAdi"
+                  name="editIlanAdi"
+                  class="form-control"
+                />
+              </div>
+              <div *ngIf="isEditing" class="form-group">
+                <label for="editIlanKategorisi">İlan Kategorisi</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editedIlanKategorisi"
+                  name="editIlanKategorisi"
+                  class="form-control"
+                />
+              </div>
+              <div *ngIf="isEditing" class="form-group">
+                <label for="editIlanTarihi">İlan Tarihi</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editedIlanTarihi"
+                  name="editIlanTarihi"
+                  class="form-control"
+                />
+              </div>
+
+              <!-- Kaydet Butonu -->
+              <button
+                class="ilanKaydet"
+                *ngIf="isEditing"
+                (click)="kaydetIlan()"
+              >
+                Kaydet
+              </button>
+
+              <!-- Düzenleme ve Silme Butonları (Düzenleme Modu Kapalıysa Göster) -->
+              <div *ngIf="!isEditing" class="buttons">
+                <button class="ilanSil" (click)="ilanSil(notices.id)">
+                  İlan Sil
+                </button>
+                <button class="ilanDuzenle" (click)="duzenleIlan()">
+                  İlan Düzenle
+                </button>
+              </div>
+            </div>
           </div>
+
+          <!-- İlan Ekle -->
+          <div *ngIf="ilanEkleVisible" class="ilanPopup">
+            <div class="ilanPopup-content">
+              <span (click)="closeIlanEkle()" class="ilanClose-popup"
+                >&times;</span
+              >
+              <div class="form-group">
+                <label for="ilanAdi">İlan Adı</label>
+                <input
+                  type="text"
+                  [(ngModel)]="addIlanAdi"
+                  name="ilanAdi"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="ilanKategorisi">İlan Kategorisi</label>
+                <input
+                  type="text"
+                  [(ngModel)]="addIlanKategorisi"
+                  name="ilanKategorisi"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="ilanTarihi">İlan Tarihi</label>
+                <input
+                  type="text"
+                  [(ngModel)]="addIlanTarihi"
+                  name="ilanTarihi"
+                  class="form-control"
+                />
+              </div>
+              <button type="submit" class="ilanKaydet" (click)="ekleIlan()">
+                Kaydet
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div>
-          <div class="row">
-            <div class="col-md-6" *ngFor="let item of noticeformanswer">
-                <div class="panel" >
-                    <div class="panel-body">
-                        <div class="bio-chart">
-                            <!-- <div style="display:inline;width:100px;height:100px;">
+        <div class="row">
+          <div class="col-md-6" *ngFor="let item of noticeformanswer">
+            <div class="panel">
+              <div class="panel-body">
+                <div class="bio-chart">
+                  <!-- <div style="display:inline;width:100px;height:100px;">
                                 <canvas width="100" height="100px"></canvas>
                                 <input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="50" data-fgcolor="#cba4db" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(203, 164, 219); padding: 0px; -webkit-appearance: none; background: none;">
                             </div> -->
-                            
-                        </div>
-                        <div class="bio-desk">
-                            <h4 class="purple"></h4>
-                            <p> Ad: {{item.answer_Name}}</p>
-                            <p>Soyad: {{item.answer_Surname}}</p>  
-                            <p>Mail: {{item.answer_Email}}</p>
-                            <p>Telefon: {{item.answer_Phone}}</p>
-                         
-                            <button (click)="showPopup()" class="details-button">Detaylar</button>
-                            <div *ngIf="isPopupVisible" class="popup">
-                                <div class="popup-content">
-                                    <span (click)="closePopup()" class="close-popup">&times;</span>
-                                    <!-- <h2>{{item.answer_Name}}</h2> -->
-                                    <h3>Sorular</h3>
-                                    <p>Kendinden bahseder misin? {{item.answer_AboutYourself}}</p>
-                                    <p>Nelerde gelişmek istiyorsun? {{item.answer_YourGoal}}</p>
-                                    <p>Mentora soruların var mı? {{item.answer_ToMentor}}</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                <div class="bio-desk">
+                  <h4 class="purple"></h4>
+                  <p>Ad: {{ item.answer_Name }}</p>
+                  <p>Soyad: {{ item.answer_Surname }}</p>
+                  <p>Mail: {{ item.answer_Email }}</p>
+                  <p>Telefon: {{ item.answer_Phone }}</p>
+
+                  <button (click)="showPopup()" class="details-button">
+                    Detaylar
+                  </button>
+                  <div *ngIf="isPopupVisible" class="popup">
+                    <div class="popup-content">
+                      <span (click)="closePopup()" class="close-popup"
+                        >&times;</span
+                      >
+                      <!-- <h2>{{item.answer_Name}}</h2> -->
+                      <h3>Sorular</h3>
+                      <p>
+                        Kendinden bahseder misin?
+                        {{ item.answer_AboutYourself }}
+                      </p>
+                      <p>
+                        Nelerde gelişmek istiyorsun? {{ item.answer_YourGoal }}
+                      </p>
+                      <p>
+                        Mentora soruların var mı? {{ item.answer_ToMentor }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <!-- Pop-up İçeriği -->
-            <!-- <div *ngIf="isPopupVisible" class="popup">
+          </div>
+
+          <!-- Pop-up İçeriği -->
+          <!-- <div *ngIf="isPopupVisible" class="popup">
                 <div class="popup-content">
                     <span (click)="closePopup()" class="close-popup">&times;</span>
                     <h2>Detaylar</h2>
                     <p>Buraya pop-up içeriğini ekleyin.</p>
                 </div>
             </div> -->
-          </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
-</div>
-    

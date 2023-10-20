@@ -13,13 +13,13 @@ import { ProfileModule } from './profile/profile.module';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from 'src/core/services/interceptor/jwt.interceptor';
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -30,11 +30,15 @@ import { JwtInterceptor } from 'src/core/services/interceptor/jwt.interceptor';
     AdsModule,
     ProfileModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule,
+    BrowserAnimationsModule,
   ],
-  
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },  ], //http isteklerini alıp işlemek için 
 
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ], //http isteklerini alıp işlemek için
+
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResponseStatus } from 'src/core/models/response/base-response-model';
 import { ApiService } from 'src/core/services/api/api.service';
 import { NoticeFormAnswerRequest } from 'src/core/models/request/noticeformanswer-request-model';
@@ -11,14 +11,19 @@ import { NoticeFormAnswerRequest } from 'src/core/models/request/noticeformanswe
   styleUrls: ['./form.component.scss'],
   providers: [MessageService, ConfirmationService],
 })
-export class FormComponent {
+export class FormComponent implements OnInit {
   public noticeFormAnswerRequest: NoticeFormAnswerRequest = <NoticeFormAnswerRequest>{};
 
   constructor(
     private readonly apiService: ApiService,
     private readonly router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private route: ActivatedRoute
   ) {}
+  ngOnInit() {
+    let id = this.route.snapshot.paramMap.get('id');
+    this.noticeFormAnswerRequest.notice_Id
+  }
 
   async formAnswer() {
     this.apiService.formAnswer(this.noticeFormAnswerRequest).subscribe(

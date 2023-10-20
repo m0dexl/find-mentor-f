@@ -136,7 +136,7 @@ export class ApiService {
   getNoticeInfo(): Observable<BaseDataResponse<Notice>> {
     //ilanları getir
     return this.http
-      .get<BaseDataResponse<Notice>>(this.endpoint + '/Auth/GetNoticeInfo') //endpoint değişecek
+      .get<BaseDataResponse<Notice>>(this.endpoint + '/Notice/GetById') //endpoint değişecek
       .pipe(
         map((result) => {
           return result;
@@ -181,5 +181,3 @@ export class ApiService {
       );
   }
 }
-
-/////
