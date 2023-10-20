@@ -76,14 +76,17 @@ export class FormDetailsComponent implements OnInit {
   ilanAdi: string = 'Frontend Eğitimi';
   ilanKategorisi: string = 'Bilgisayar/Yazılım';
   ilanTarihi: string = '9.10.2023';
+  ilanAciklamasi: string = '';
 
   editedIlanAdi: string = '';
   editedIlanKategorisi: string = '';
   editedIlanTarihi: string = '';
+  editedIlanAciklamasi: string = '';
 
   addIlanAdi: string = '';
   addIlanKategorisi: string = '';
   addIlanTarihi: string = '';
+  addIlanAciklamasi: string = '';
 
   showIlanEkle() {
     this.ilanEkleVisible = !this.ilanEkleVisible;
@@ -109,14 +112,20 @@ export class FormDetailsComponent implements OnInit {
   }
 
   ekleIlan() {
-    if (this.addIlanAdi && this.addIlanKategorisi && this.addIlanTarihi) {
-      alert('İlan eklendi');
-      this.ilanAdi = this.addIlanAdi;
-      this.ilanKategorisi = this.addIlanKategorisi;
-      this.ilanTarihi = this.addIlanTarihi;
-      this.ilanEkleVisible = !this.ilanEkleVisible;
+    if (this.addIlanAdi && this.addIlanKategorisi && this.addIlanAciklamasi) {
+      if (this.addIlanAciklamasi.length >= 100) {
+        alert('İlan eklendi');
+        this.currentUsersNotice.noticeTitle = this.addIlanAdi;
+        this.currentUsersNotice.noticeCategoryName = this.addIlanKategorisi;
+        this.currentUsersNotice.noticeDescription = this.addIlanAciklamasi;
+        this.ilanEkleVisible = !this.ilanEkleVisible;
+      } else {
+        alert(
+          'İlan açıklaması en az 100 karakter içermelidir. Lütfen tekrar kontrol ediniz.'
+        );
+      }
     } else {
-      alert('Eksik veya yanlış yazdınız.Tekrar kontrol ediniz.');
+      alert('Eksik veya yanlış bilgi girdiniz. Lütfen tekrar kontrol ediniz.');
     }
   }
 }
