@@ -5,6 +5,7 @@ import { NoticeFormAnswer } from 'src/core/models/noticeformanswer.model';
 import { Notice } from 'src/core/models/notice.model';
 import { NoticeRequest } from 'src/core/models/request/notice-request-model';
 import { User } from 'src/core/models/user.model';
+import { ResponseStatus } from 'src/core/models/response/base-response-model';
 
 @Component({
   selector: 'app-form-details',
@@ -71,6 +72,20 @@ export class FormDetailsComponent implements OnInit {
   deleteNotice(id: number) {
     this.apiService.deleteEntity(id, Notice);
     window.location.reload();
+  }
+
+  updateNotice(id: number, updatedNotice: Notice) {
+    this.apiService
+      .updateEntity(id, updatedNotice, Notice)
+      .then((response) => {
+        if (response?.status == ResponseStatus.Ok) {
+          this.refresh();
+        }
+      })
+      .catch((error) => {
+        console.error('ilan güncellenirken hata oluştu:', error);
+      });
+    this.isNoticeEditing = false;
   }
 
   editedNoticeTitle: string = '';

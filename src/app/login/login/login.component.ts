@@ -1,4 +1,3 @@
-
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
@@ -10,7 +9,7 @@ import { AuthService } from 'src/core/services/auth/auth.service';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  providers: [MessageService]
+  providers: [MessageService],
 })
 export class LoginComponent {
   public loginRequest: LoginRequest = <LoginRequest>{};
@@ -21,23 +20,23 @@ export class LoginComponent {
     private messageService: MessageService
   ) {}
 
-  
   async login() {
     let status = await this.authService.login(this.loginRequest);
 
-  if (status == ResponseStatus.Ok) {
-  const userType = this.authService.getUserType(); 
-    if (userType === 0) {
-    await this.router.navigate(['/admin']); // Admin ise 
-  } else if (userType === 1) {
-  await this.router.navigate(['/profile']); // Mnetor ise 
-  
-  } else {
-  this.messageService.add({
-  severity: 'error',
-  summary: 'Hata',
-  detail: 'Kullanıcı adı veya şifre hatalı!'});
-  this.loginRequest.password = '';
-  }};
-  } 
+    if (status == ResponseStatus.Ok) {
+      const userType = this.authService.getUserType();
+      if (userType === 0) {
+        await this.router.navigate(['/admin']); // Admin ise
+      } else if (userType === 1) {
+        await this.router.navigate(['/profile']); // Mnetor ise
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Hata',
+          detail: 'Kullanıcı adı veya şifre hatalı!',
+        });
+        this.loginRequest.password = '';
+      }
+    }
+  }
 }

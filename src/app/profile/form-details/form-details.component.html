@@ -84,19 +84,20 @@
               </div>
               <div *ngIf="isNoticeEditing && NoticeToEdit" class="form-group">
                 <label for="editIlanTarihi">İlan Açıklaması</label>
-                <input
+                <textarea
                   type="text"
+                  minlength="100"
                   [(ngModel)]="NoticeToEdit.noticeDescription"
                   name="editIlanTarihi"
                   class="form-control"
-                />
+                ></textarea>
               </div>
 
               <!-- Kaydet Butonu -->
               <button
                 class="ilanKaydet"
                 *ngIf="isNoticeEditing"
-                (click)="kaydetIlan()"
+                (click)="updateNotice(currentUserNotice.id, NoticeToEdit!)"
               >
                 Kaydet
               </button>
