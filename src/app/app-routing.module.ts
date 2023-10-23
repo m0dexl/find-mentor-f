@@ -11,6 +11,7 @@ import { FormComponent } from './ads/form/form.component';
 import { ProfileComponent } from './profile/profile/profile.component';
 import { FormDetailsComponent } from './profile/form-details/form-details.component';
 import { FormDetailsPopUpComponent } from './profile/form-details-pop-up/form-details-pop-up.component';
+import { AdminComponent } from './admin/admin/admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect to home page
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'profile/my-notices', component: FormDetailsComponent },
   { path: 'profile-ads2', component: FormDetailsPopUpComponent },
   { path: 'contact/:id', component: FormComponent },
+  {path: "admin", component: AdminComponent}
 ];
 
 @NgModule({
