@@ -14,6 +14,7 @@ import { AuthService } from 'src/core/services/auth/auth.service';
 export class SignupComponent {
 
   firstName: string = ''; //ben ekledim 
+  
   lastName: string = ''; //ben ekledim
 
   //registerRequest: any = {}; //ben ekledim
@@ -36,16 +37,51 @@ export class SignupComponent {
     private readonly router: Router,
     private messageService: MessageService
   ) { }
+   validateName() {
+     if (this.firstName.length > 20) {
+       alert('Adınız en fazla 20 karakter içermelidir.');
+       this.firstName = this.firstName.slice(0, 20); // Adı 20 karaktere kırp
+     }
+     if (/[!@#$%^&*(),.?":{}|<>]/.test(this.firstName)) {
+       alert('Adınız özel karakter içeremez.');
+       this.firstName = this.firstName.replace(/[!@#$%^&*(),.?":{}|<>]/g, ''); // Özel karakterleri kaldır
+     }
+   }
+
+   isValidEmail(email: string): boolean {
+    const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com)/;
+    return emailPattern.test(email);
+  }
+
 
   async signup() {
 
     //if else bloğunu ekledim
     if (this.password && this.passwordConfirm && this.password == this.passwordConfirm) {
-
-      if (this.firstName.length < 6) {
-        alert('Adınız en az 6 karakter içermelidir.');
+      
+      // if (this.firstName.length > 20) { //max 20 karakter
+      //   alert('Adınız en fazla 20 karakter içermelidir.');
+      //   return;
+      // }
+      // // first name özel karakter girilememe
+      // if (/[!@#$%^&*(),.?":{}|<>]/.test(this.firstName)) {
+      //   alert('Adınız özel karakter içeremez.');
+      //   return;
+      // }
+      if (this.registerRequest.userName.length < 6 || this.registerRequest.userName.length > 15) {
+        alert('Kullanıcı adınız en az 6, en fazla 15 karakter içermelidir.');
         return;
       }
+      if (this.password.length < 6 || this.password.length > 20) {
+        alert('Şifreniz en az 6, en fazla 20 karakter içermelidir.');
+        return;
+      }
+      if (!this.isValidEmail(this.registerRequest.email)) {
+        alert('Geçerli bir e-posta adresi giriniz.');
+        return;
+      }
+
+      this.validateName()
       
       this.registerRequest.password = this.passwordConfirm
       this.registerRequest.fullName = `${this.firstName} ${this.lastName}` //ben ekledim
