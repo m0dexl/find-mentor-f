@@ -22,7 +22,7 @@
             <a href="profile"> <i class="fa fa-user"></i> Profilim</a>
           </li>
           <li class="active">
-            <a href="profile-ads">
+            <a href="/profile/my-notices">
               <i class="fa fa-calendar"></i> İlanlarım
               <span class="label label-warning pull-right r-activity"></span
             ></a>
@@ -38,52 +38,55 @@
           <br />
           <div class="buttons">
             <button class="ilanGoruntule" (click)="noticeDetailPopupControl()">
-              İlanlarımı Görüntüle
+              İlanımı Görüntüle
             </button>
             <button class="ilanEkle" (click)="showIlanEkle()">İlan Ekle</button>
           </div>
 
-          <div *ngIf="!isNoticeDetailPopupVisible" class="ilanPopup">
+          <div
+            *ngIf="isNoticeDetailPopupVisible && currentUserHaveNotice"
+            class="ilanPopup"
+          >
             <div class="ilanPopup-content">
               <span (click)="noticeDetailPopupControl()" class="ilanClose-popup"
                 >&times;</span
               >
 
               <!-- İlan Bilgileri -->
-              <div class="ilanBilgileri" *ngIf="!isEditing">
-                <p>İlan Adı: {{ currentUsersNotice.noticeTitle }}</p>
+              <div class="ilanBilgileri" *ngIf="!isNoticeEditing">
+                <p>İlan Adı: {{ currentUserNotice.noticeTitle }}</p>
                 <p>
-                  İlan Kategorisi: {{ currentUsersNotice.noticeCategoryName }}
+                  İlan Kategorisi: {{ currentUserNotice.noticeCategoryName }}
                 </p>
                 <p>
-                  İlan Açıklaması: {{ currentUsersNotice.noticeDescription }}
+                  İlan Açıklaması: {{ currentUserNotice.noticeDescription }}
                 </p>
               </div>
 
               <!-- Düzenleme Modu -->
-              <div *ngIf="isEditing" class="form-group">
+              <div *ngIf="isNoticeEditing && NoticeToEdit" class="form-group">
                 <label for="editIlanAdi">İlan Adı</label>
                 <input
                   type="text"
-                  [(ngModel)]="editedIlanAdi"
+                  [(ngModel)]="NoticeToEdit.noticeTitle"
                   name="editIlanAdi"
                   class="form-control"
                 />
               </div>
-              <div *ngIf="isEditing" class="form-group">
+              <div *ngIf="isNoticeEditing && NoticeToEdit" class="form-group">
                 <label for="editIlanKategorisi">İlan Kategorisi</label>
                 <input
                   type="text"
-                  [(ngModel)]="editedIlanKategorisi"
+                  [(ngModel)]="NoticeToEdit.noticeCategoryName"
                   name="editIlanKategorisi"
                   class="form-control"
                 />
               </div>
-              <div *ngIf="isEditing" class="form-group">
-                <label for="editIlanTarihi">İlan Tarihi</label>
+              <div *ngIf="isNoticeEditing && NoticeToEdit" class="form-group">
+                <label for="editIlanTarihi">İlan Açıklaması</label>
                 <input
                   type="text"
-                  [(ngModel)]="editedIlanTarihi"
+                  [(ngModel)]="NoticeToEdit.noticeDescription"
                   name="editIlanTarihi"
                   class="form-control"
                 />
@@ -92,120 +95,143 @@
               <!-- Kaydet Butonu -->
               <button
                 class="ilanKaydet"
-                *ngIf="isEditing"
+                *ngIf="isNoticeEditing"
                 (click)="kaydetIlan()"
               >
                 Kaydet
               </button>
 
               <!-- Düzenleme ve Silme Butonları (Düzenleme Modu Kapalıysa Göster) -->
-              <div *ngIf="!isEditing" class="buttons">
+              <div *ngIf="!isNoticeEditing" class="buttons">
                 <button
                   class="ilanSil"
-                  (click)="ilanSil(currentUsersNotice.id)"
+                  (click)="deleteNotice(currentUserNotice.id)"
                 >
                   İlan Sil
                 </button>
-                <button class="ilanDuzenle" (click)="duzenleIlan()">
+                <button class="ilanDuzenle" (click)="editNotice()">
                   İlan Düzenle
                 </button>
               </div>
             </div>
           </div>
 
-          <!-- İlan Ekle -->
-          <div *ngIf="ilanEkleVisible" class="ilanPopup">
+          <div
+            *ngIf="isNoticeDetailPopupVisible && !currentUserHaveNotice"
+            class="ilanPopup"
+          >
             <div class="ilanPopup-content">
-              <span (click)="closeIlanEkle()" class="ilanClose-popup"
+              <span (click)="noticeDetailPopupControl()" class="ilanClose-popup"
                 >&times;</span
               >
-              <div class="form-group">
-                <label for="ilanAdi">İlan Adı</label>
-                <input
-                  type="text"
-                  [(ngModel)]="addIlanAdi"
-                  name="ilanAdi"
-                  class="form-control"
-                />
+
+              <!-- İlan Bilgileri -->
+              <div class="ilanBilgileri" *ngIf="!isNoticeEditing">
+                <h2>İLANINIZ YOK!</h2>
+                <h3>İlan ekleyiniz</h3>
               </div>
-              <div class="form-group">
-                <label for="ilanKategorisi">İlan Kategorisi</label>
-                <input
-                  type="text"
-                  [(ngModel)]="addIlanKategorisi"
-                  name="ilanKategorisi"
-                  class="form-control"
-                />
+            </div>
+
+            <!-- İlan Ekle -->
+            <div *ngIf="ilanEkleVisible" class="ilanPopup">
+              <div class="ilanPopup-content">
+                <span (click)="closeIlanEkle()" class="ilanClose-popup"
+                  >&times;</span
+                >
+                <div class="form-group">
+                  <label for="ilanAdi">İlan Adı</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="addIlanAdi"
+                    name="ilanAdi"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="ilanKategorisi">İlan Kategorisi</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="addIlanKategorisi"
+                    name="ilanKategorisi"
+                    class="form-control"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="ilanAciklamasi">İlan Açıklaması</label>
+                  <input
+                    type="text"
+                    [(ngModel)]="addIlanAciklamasi"
+                    name="ilanAciklamasi"
+                    class="form-control"
+                  />
+                </div>
+                <button type="submit" class="ilanKaydet" (click)="ekleIlan()">
+                  Kaydet
+                </button>
               </div>
-              <div class="form-group">
-                <label for="ilanTarihi">İlan Tarihi</label>
-                <input
-                  type="text"
-                  [(ngModel)]="addIlanTarihi"
-                  name="ilanTarihi"
-                  class="form-control"
-                />
-              </div>
-              <button type="submit" class="ilanKaydet" (click)="ekleIlan()">
-                Kaydet
-              </button>
             </div>
           </div>
         </div>
-      </div>
-      <div>
-        <div class="row">
-          <div class="col-md-6" *ngFor="let item of noticeformanswer">
-            <div class="panel">
-              <div class="panel-body">
-                <div class="bio-chart">
-                  <!-- <div style="display:inline;width:100px;height:100px;">
+        <div>
+          <div class="row">
+            <div class="col-md-6" *ngFor="let item of noticeformanswer">
+              <div class="panel">
+                <div class="panel-body">
+                  <div class="bio-chart">
+                    <!-- <div style="display:inline;width:100px;height:100px;">
                                 <canvas width="100" height="100px"></canvas>
                                 <input class="knob" data-width="100" data-height="100" data-displayprevious="true" data-thickness=".2" value="50" data-fgcolor="#cba4db" data-bgcolor="#e8e8e8" style="width: 54px; height: 33px; position: absolute; vertical-align: middle; margin-top: 33px; margin-left: -77px; border: 0px; font-weight: bold; font-style: normal; font-variant: normal; font-stretch: normal; font-size: 20px; line-height: normal; font-family: Arial; text-align: center; color: rgb(203, 164, 219); padding: 0px; -webkit-appearance: none; background: none;">
                             </div> -->
-                </div>
-                <div class="bio-desk">
-                  <h4 class="purple"></h4>
-                  <p>Ad: {{ item.answer_Name }}</p>
-                  <p>Soyad: {{ item.answer_Surname }}</p>
-                  <p>Mail: {{ item.answer_Email }}</p>
-                  <p>Telefon: {{ item.answer_Phone }}</p>
+                  </div>
+                  <div class="bio-desk">
+                    <h4 class="purple"></h4>
+                    <p>Ad: {{ item.answer_Name }}</p>
+                    <p>Soyad: {{ item.answer_Surname }}</p>
+                    <p>Mail: {{ item.answer_Email }}</p>
+                    <p>Telefon: {{ item.answer_Phone }}</p>
 
-                  <button (click)="showPopup()" class="details-button">
-                    Detaylar
-                  </button>
-                  <div *ngIf="isPopupVisible" class="popup">
-                    <div class="popup-content">
-                      <span (click)="closePopup()" class="close-popup"
-                        >&times;</span
-                      >
-                      <!-- <h2>{{item.answer_Name}}</h2> -->
-                      <h3>Sorular</h3>
-                      <p>
-                        Kendinden bahseder misin?
-                        {{ item.answer_AboutYourself }}
-                      </p>
-                      <p>
-                        Nelerde gelişmek istiyorsun? {{ item.answer_YourGoal }}
-                      </p>
-                      <p>
-                        Mentora soruların var mı? {{ item.answer_ToMentor }}
-                      </p>
+                    <button
+                      (click)="nfaDetailPopupControl()"
+                      class="details-button"
+                    >
+                      Detaylar
+                    </button>
+                    <div *ngIf="isNFAPopupVisible" class="popup">
+                      <div class="popup-content">
+                        <span
+                          (click)="nfaDetailPopupControl()"
+                          class="close-popup"
+                          >&times;</span
+                        >
+                        <!-- <h2>{{item.answer_Name}}</h2> -->
+                        <h3>Sorular</h3>
+                        <p>
+                          Kendinden bahseder misin?
+                          {{ item.answer_AboutYourself }}
+                        </p>
+                        <p>
+                          Nelerde gelişmek istiyorsun?
+                          {{ item.answer_YourGoal }}
+                        </p>
+                        <p>
+                          Mentora soruların var mı? {{ item.answer_ToMentor }}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <!-- Pop-up İçeriği -->
-          <!-- <div *ngIf="isPopupVisible" class="popup">
+            <!-- Pop-up İçeriği -->
+            <!-- <div *ngIf="isPopupVisible" class="popup">
                 <div class="popup-content">
                     <span (click)="closePopup()" class="close-popup">&times;</span>
                     <h2>Detaylar</h2>
                     <p>Buraya pop-up içeriğini ekleyin.</p>
                 </div>
             </div> -->
+          </div>
         </div>
       </div>
     </div>
