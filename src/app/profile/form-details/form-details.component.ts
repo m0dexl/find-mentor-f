@@ -19,11 +19,14 @@ export class FormDetailsComponent implements OnInit {
   }
 
   currentUser: User = <User>{};
-  currentUsersNotice: Notice = <Notice>{};
+  currentUserNotice: Notice = <Notice>{};
+  currentUserHaveNotice: boolean = false;
   public noticeRequest: NoticeRequest = <NoticeRequest>{};
   noticeformanswer: NoticeFormAnswer[] = [];
 
   allNotices: Notice[] = [];
+
+  NoticeToEdit: Notice | null = null;
 
   async refresh() {
     this.getCurrentUser();
@@ -40,10 +43,15 @@ export class FormDetailsComponent implements OnInit {
     //   console.log('sa', response?.data);
     // });
     this.apiService.getAllEntities(Notice).subscribe((response) => {
-      this.allNotices = response.data;
-      for (let val of this.allNotices) {
-        if (val.mentorUser_Id == id) {
-          this.currentUsersNotice = val;
+      if (response.data.length > 0) {
+        this.allNotices = response.data;
+        for (let val of this.allNotices) {
+          if (val.mentorUser_Id == id) {
+            this.currentUserNotice = val;
+            this.currentUserHaveNotice = true;
+          } else {
+            this.currentUserHaveNotice = false;
+          }
         }
       }
     });
@@ -54,34 +62,36 @@ export class FormDetailsComponent implements OnInit {
     });
   }
 
-  isNoticeDetailPopupVisible: boolean = true;
+  isNoticeDetailPopupVisible: boolean = false;
   noticeDetailPopupControl() {
     this.isNoticeDetailPopupVisible = !this.isNoticeDetailPopupVisible;
+    this.isNoticeEditing = false;
   }
 
-  isPopupVisible: boolean = false;
-
-  showPopup() {
-    this.isPopupVisible = true;
+  deleteNotice(id: number) {
+    this.apiService.deleteEntity(id, Notice);
+    window.location.reload();
   }
 
-  closePopup() {
-    this.isPopupVisible = false;
+  editedNoticeTitle: string = '';
+  editedNoticeDescription: string = '';
+  editedNoticeCategoryName: string = '';
+
+  isNFAPopupVisible: boolean = false;
+  nfaDetailPopupControl() {
+    this.isNFAPopupVisible = !this.isNFAPopupVisible;
   }
 
-  isEditing = false;
+  isNoticeEditing = false;
   ilanEkleVisible = false;
   isFormValid = true;
 
-  ilanAdi: string = 'Frontend Eğitimi';
-  ilanKategorisi: string = 'Bilgisayar/Yazılım';
-  ilanTarihi: string = '9.10.2023';
-  ilanAciklamasi: string = '';
+  // ilanAdi: string = 'Frontend Eğitimi';
+  // ilanKategorisi: string = 'Bilgisayar/Yazılım';
+  // ilanTarihi: string = '9.10.2023';
+  // ilanAciklamasi: string = '';
 
-  editedIlanAdi: string = '';
-  editedIlanKategorisi: string = '';
-  editedIlanTarihi: string = '';
-  editedIlanAciklamasi: string = '';
+  // mevcut ilanı güncellemeye yarayan şeyler
 
   addIlanAdi: string = '';
   addIlanKategorisi: string = '';
@@ -96,28 +106,22 @@ export class FormDetailsComponent implements OnInit {
     this.ilanEkleVisible = !this.ilanEkleVisible;
   }
 
-  ilanSil(id: number) {
-    this.apiService.deleteEntity(id, Notice);
-  }
-
-  duzenleIlan() {
-    this.isEditing = true;
+  editNotice() {
+    this.isNoticeEditing = true;
+    this.NoticeToEdit = this.currentUserNotice;
   }
 
   kaydetIlan() {
-    this.ilanAdi = this.editedIlanAdi;
-    this.ilanKategorisi = this.editedIlanKategorisi;
-    this.ilanTarihi = this.editedIlanTarihi;
-    this.isEditing = false;
+    this.isNoticeEditing = false;
   }
 
   ekleIlan() {
     if (this.addIlanAdi && this.addIlanKategorisi && this.addIlanAciklamasi) {
       if (this.addIlanAciklamasi.length >= 100) {
         alert('İlan eklendi');
-        this.currentUsersNotice.noticeTitle = this.addIlanAdi;
-        this.currentUsersNotice.noticeCategoryName = this.addIlanKategorisi;
-        this.currentUsersNotice.noticeDescription = this.addIlanAciklamasi;
+        this.currentUserNotice.noticeTitle = this.addIlanAdi;
+        this.currentUserNotice.noticeCategoryName = this.addIlanKategorisi;
+        this.currentUserNotice.noticeDescription = this.addIlanAciklamasi;
         this.ilanEkleVisible = !this.ilanEkleVisible;
       } else {
         alert(

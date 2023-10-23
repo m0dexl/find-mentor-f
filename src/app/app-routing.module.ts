@@ -14,24 +14,20 @@ import { FormDetailsPopUpComponent } from './profile/form-details-pop-up/form-de
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect to home page
-  {path:"home",component:HomeComponent,
-  children: [{path:"",component:HeroComponent},
-  {path:"",component:HowitworksComponent}]},
-  {path: "categories",component:CategoriesComponent},
-  {path: "ads",component:AdsComponent},
-  {path: "login", component:LoginComponent},
-  {path: "signup", component: SignupComponent},
-  
-  {path: "profile", component:ProfileComponent},
-  {path: "profile-ads", component:FormDetailsComponent},
-  {path: "profile-ads2", component:FormDetailsPopUpComponent},
-  {path: "contact/:id", component:FormComponent}
+  { path: 'home', component: HomeComponent },
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'ads', component: AdsComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
 
-
+  { path: 'profile', component: ProfileComponent },
+  { path: 'profile/my-notices', component: FormDetailsComponent },
+  { path: 'profile-ads2', component: FormDetailsPopUpComponent },
+  { path: 'contact/:id', component: FormComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
