@@ -7,21 +7,10 @@ import { FormsModule } from '@angular/forms';
 import { FormComponent } from './form/form.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
-  declarations: [
-    AdsComponent,
-    AdsContentComponent,
-    FormComponent
-    ],
-  imports: [
-    CommonModule,
-    HomeModule,
-    FormsModule,
-    RouterModule
-  ]
+  declarations: [AdsComponent, AdsContentComponent, FormComponent],
+  imports: [CommonModule, HomeModule, FormsModule, RouterModule],
 })
-export class AdsModule { }
+export class AdsModule {}
 
 //asdad

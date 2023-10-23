@@ -17,8 +17,6 @@ import { ToastModule } from 'primeng/toast';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminModule } from './admin/admin.module';
 
-
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -34,7 +32,7 @@ import { AdminModule } from './admin/admin.module';
     HttpClientModule,
     ToastModule,
     BrowserAnimationsModule,
-    AdminModule
+    AdminModule,
   ],
 
   providers: [

@@ -16,7 +16,6 @@ import { Notice } from 'src/core/models/notice.model';
 import { Category } from 'src/core/models/category.model';
 import { NoticeFormAnswerRequest } from 'src/core/models/request/noticeformanswer-request-model';
 
-
 @Injectable({
   providedIn: 'root',
 })
@@ -106,6 +105,7 @@ export class ApiService {
       .get<BaseDataResponse<User>>(this.endpoint + '/Auth/GetProfileInfo')
       .pipe(
         map((result) => {
+          console.log(result);
           return result;
         })
       );
@@ -147,9 +147,7 @@ export class ApiService {
   getCategoryInfo(): Observable<BaseDataResponse<Category>> {
     //Kategorileri getir
     return this.http
-      .get<BaseDataResponse<Category>>(
-        this.endpoint + '/Auth/GetCategoryInfo'
-      ) //endpoint değişecek
+      .get<BaseDataResponse<Category>>(this.endpoint + '/Auth/GetCategoryInfo') //endpoint değişecek
       .pipe(
         map((result) => {
           return result;
@@ -159,19 +157,22 @@ export class ApiService {
   //form cevaplarını Getir
   getAnswerInfo(): Observable<BaseDataResponse<NoticeFormAnswerRequest>> {
     return this.http
-      .get<BaseDataResponse<NoticeFormAnswerRequest>>(this.endpoint + '/Auth/AnswerInfo')
+      .get<BaseDataResponse<NoticeFormAnswerRequest>>(
+        this.endpoint + '/Auth/AnswerInfo'
+      )
       .pipe(
         map((result) => {
           return result;
         })
       );
   }
-  formAnswer(     //form cevaplarını gönder
+  formAnswer(
+    //form cevaplarını gönder
     request: NoticeFormAnswerRequest
   ): Observable<BaseDataResponse<TokenResponse>> {
     return this.http
       .post<BaseDataResponse<TokenResponse>>(
-        this.endpoint + '/NoticeFormAnswer/Create',  //endpoint değişecek
+        this.endpoint + '/NoticeFormAnswer/Create', //endpoint değişecek
         request
       )
       .pipe(

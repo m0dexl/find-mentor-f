@@ -10,8 +10,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MentorComponent } from './mentor/mentor.component';
 import { AboutComponent } from './about/about.component';
 
-
-
 @NgModule({
   declarations: [
     NavbarComponent,
@@ -21,12 +19,9 @@ import { AboutComponent } from './about/about.component';
     HomeComponent,
     CategoryComponent,
     MentorComponent,
-    AboutComponent
+    AboutComponent,
   ],
-  imports: [
-    CommonModule, 
-    FontAwesomeModule
-  ],
-  exports:[NavbarComponent, FooterComponent, CategoryComponent]
+  imports: [CommonModule, FontAwesomeModule],
+  exports: [NavbarComponent, FooterComponent, CategoryComponent],
 })
-export class HomeModule { }
+export class HomeModule {}
