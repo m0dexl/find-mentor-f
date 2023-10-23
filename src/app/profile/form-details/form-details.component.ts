@@ -6,6 +6,7 @@ import { Notice } from 'src/core/models/notice.model';
 import { NoticeRequest } from 'src/core/models/request/notice-request-model';
 import { User } from 'src/core/models/user.model';
 import { ResponseStatus } from 'src/core/models/response/base-response-model';
+import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-form-details',
@@ -14,6 +15,7 @@ import { ResponseStatus } from 'src/core/models/response/base-response-model';
 })
 export class FormDetailsComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router) {}
+  faRightFromBracket = faRightFromBracket;
 
   ngOnInit() {
     this.refresh();
