@@ -6,5 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent {
+  
+//Sidebar toggle show hide function
+status = false;
+addToggle()
+{
+  this.status = !this.status;       
+}
 
 }
