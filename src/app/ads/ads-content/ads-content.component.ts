@@ -14,15 +14,15 @@ export class AdsContentComponent {
 
   notices: Notice[] = [];
   categories: Category[] = []; // Kategorileri tutacak dizi
-  filteredNotices: Notice[]= [];
-  selectedCategory: Category[] = [];
-
+  filteredNotices: Notice[] = [];
+  selectedCategory: any;
 
   ngOnInit() {
     this.refresh();
   }
 
-  refresh() {     //ilanları alıyoruz
+  refresh() {
+    //ilanları alıyoruz
     this.apiService.getAllEntities(Notice).subscribe((response) => {
       this.notices = response.data;
       this.filteredNotices = response.data;
@@ -41,8 +41,7 @@ export class AdsContentComponent {
       });
     });
   }
-    
-  
+
   // filterNotices() {
   //   if (this.selectedCategory === '' && this.notices) {
   //    for (let val of this.notices) {
@@ -57,9 +56,9 @@ export class AdsContentComponent {
   //     );
   //   }
   // }
-  
- filterNotices() {
-console.log(this.selectedCategory)
+
+  filterNotices() {
+    console.log(this.selectedCategory);
     // if (this.selectedCategory === '') {
     //   // Hiçbir kategori seçilmediyse, tüm ilanları göster
     //   this.filteredNotices = this.notices;
@@ -73,4 +72,3 @@ console.log(this.selectedCategory)
     // }
   }
 }
-

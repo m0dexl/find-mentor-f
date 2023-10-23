@@ -1,12 +1,22 @@
 <section class="page-section">
-<div class="filter-box">
-<select class="form-select form-select-sm" aria-label="Kategori seçiniz" [(ngModel)]="selectedCategory" (change)="filterNotices()">
-  <option value="">Kategori seçiniz</option>
-  <option *ngFor="let category of categories" [value]="category">{{ category.category_Name }}</option>
-</select>
-</div>
+  <div class="filter-box">
+    <select
+      class="form-select form-select-sm"
+      aria-label="Kategori seçiniz"
+      [(ngModel)]="selectedCategory"
+      (change)="filterNotices()"
+    >
+      <option value="">Bütün kategoriler</option>
+      <option
+        *ngFor="let category of categories"
+        [value]="category.category_Name"
+      >
+        {{ category.category_Name }}
+      </option>
+    </select>
+  </div>
   <div class="containerads" *ngFor="let notice of filteredNotices">
-    <div class="itemsads"  >
+    <div class="itemsads">
       <div class="photoads">
         <img
           class="imgads"
@@ -31,7 +41,7 @@
     </div>
     <div class="rightads">
       <p class="adsp">
-          {{notice.noticeDescription}}
+        {{ notice.noticeDescription }}
       </p>
       <p class="adsp">
         Lorem Ipsum is simply dummy text of the printing and typesetting
