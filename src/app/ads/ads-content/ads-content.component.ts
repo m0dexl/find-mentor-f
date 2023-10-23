@@ -15,7 +15,7 @@ export class AdsContentComponent {
   notices: Notice[] = [];
   categories: Category[] = []; // Kategorileri tutacak dizi
   filteredNotices: Notice[] = [];
-  selectedCategory: any;
+  selectedCategory: string = '';
 
   ngOnInit() {
     this.refresh();
@@ -25,7 +25,7 @@ export class AdsContentComponent {
     //ilanları alıyoruz
     this.apiService.getAllEntities(Notice).subscribe((response) => {
       this.notices = response.data;
-      this.filteredNotices = response.data;
+      this.filteredNotices = this.notices;
       // İlan başlığını ve kategori adını büyük harfe dönüştürme
       this.notices.forEach((notice) => {
         notice.noticeTitle =
@@ -59,16 +59,17 @@ export class AdsContentComponent {
 
   filterNotices() {
     console.log(this.selectedCategory);
-    // if (this.selectedCategory === '') {
-    //   // Hiçbir kategori seçilmediyse, tüm ilanları göster
-    //   this.filteredNotices = this.notices;
-    // } else {
-    //   // Kategori seçildiyse, ilanları kategoriye göre filtrele
-    //   this.filteredNotices = this.notices.filter(
-    //     (notice) =>
-    //       notice.noticeCategoryName.toLowerCase() ===
-    //       this.selectedCategory.toLowerCase()
-    //   );
-    // }
+    console.log(this.notices);
+    if (this.selectedCategory == '') {
+      // Hiçbir kategori seçilmediyse, tüm ilanları göster
+      this.filteredNotices = this.notices;
+    } else if (this.selectedCategory != '') {
+      // Kategori seçildiyse, ilanları kategoriye göre filtrele
+      this.filteredNotices = this.notices.filter(
+        (notice) =>
+          notice.noticeCategoryName.toLowerCase() ===
+          this.selectedCategory.toLowerCase()
+      );
+    }
   }
 }
