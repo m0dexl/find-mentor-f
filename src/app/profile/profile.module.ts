@@ -7,10 +7,7 @@ import { FormDetailsPopUpComponent } from './form-details-pop-up/form-details-po
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { HomeModule } from '../home/home.module';
-
-
-
-
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,13 +15,7 @@ import { HomeModule } from '../home/home.module';
     ProfileContentComponent,
     FormDetailsComponent,
     FormDetailsPopUpComponent,
-    
-    
   ],
-  imports: [
-    CommonModule,
-    FontAwesomeModule,
-    FormsModule,
-  ]
+  imports: [CommonModule, FontAwesomeModule, FormsModule, RouterModule],
 })
-export class ProfileModule { }
+export class ProfileModule {}
