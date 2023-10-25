@@ -197,7 +197,7 @@
                   class="form-control"
                 />
               </div>
-              <button type="submit" class="ilanKaydet" (click)="ekleIlan()">
+              <button type="submit" class="ilanKaydet" (click)="createNotice()">
                 Kaydet
               </button>
             </div>
@@ -205,7 +205,10 @@
         </div>
         <div>
           <div class="row">
-            <div class="col-md-6" *ngFor="let item of noticeformanswer">
+            <div
+              class="col-md-6"
+              *ngFor="let nfa of currentUserNoticeFormAnswers"
+            >
               <div class="panel">
                 <div class="panel-body">
                   <div class="bio-chart">
@@ -216,10 +219,10 @@
                   </div>
                   <div class="bio-desk">
                     <h4 class="purple"></h4>
-                    <p>Ad: {{ item.answer_Name }}</p>
-                    <p>Soyad: {{ item.answer_Surname }}</p>
-                    <p>Mail: {{ item.answer_Email }}</p>
-                    <p>Telefon: {{ item.answer_Phone }}</p>
+                    <p>Ad: {{ nfa.answer_Name }}</p>
+                    <p>Soyad: {{ nfa.answer_Surname }}</p>
+                    <p>Mail: {{ nfa.answer_Email }}</p>
+                    <p>Telefon: {{ nfa.answer_Phone }}</p>
 
                     <button
                       (click)="toggleNFADetailPopupControl()"
@@ -238,14 +241,14 @@
                         <h3>Sorular</h3>
                         <p>
                           Kendinden bahseder misin?
-                          {{ item.answer_AboutYourself }}
+                          {{ nfa.answer_AboutYourself }}
                         </p>
                         <p>
                           Nelerde gelişmek istiyorsun?
-                          {{ item.answer_YourGoal }}
+                          {{ nfa.answer_YourGoal }}
                         </p>
                         <p>
-                          Mentora soruların var mı? {{ item.answer_ToMentor }}
+                          Mentora soruların var mı? {{ nfa.answer_ToMentor }}
                         </p>
                       </div>
                     </div>
