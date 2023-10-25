@@ -29,14 +29,14 @@ export class LoginComponent {
         await this.router.navigate(['/admin']); // Admin ise
       } else if (userType === 1) {
         await this.router.navigate(['/profile']); // Mnetor ise
-      } else {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Hata',
-          detail: 'Kullanıcı adı veya şifre hatalı!',
-        });
-        this.loginRequest.password = '';
       }
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Hata',
+        detail: 'Kullanıcı adı veya şifre hatalı!',
+      });
+      this.loginRequest.password = '';
     }
   }
 }
