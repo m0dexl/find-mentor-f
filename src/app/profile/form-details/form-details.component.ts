@@ -66,13 +66,14 @@ export class FormDetailsComponent implements OnInit {
   }
 
   isNoticeDetailPopupVisible: boolean = false;
-  noticeDetailPopupControl() {
+  toggleNoticeDetailPopup() {
     this.isNoticeDetailPopupVisible = !this.isNoticeDetailPopupVisible;
     this.isNoticeEditing = false;
   }
 
   deleteNotice(id: number) {
     this.apiService.deleteEntity(id, Notice);
+    this.getNoticeByMentorId(this.currentUser.id);
     window.location.reload();
   }
 
@@ -95,12 +96,11 @@ export class FormDetailsComponent implements OnInit {
   editedNoticeCategoryName: string = '';
 
   isNFAPopupVisible: boolean = false;
-  nfaDetailPopupControl() {
+  toggleNFADetailPopupControl() {
     this.isNFAPopupVisible = !this.isNFAPopupVisible;
   }
 
   isNoticeEditing = false;
-  ilanEkleVisible = false;
   isFormValid = true;
 
   // ilanAdi: string = 'Frontend Eğitimi';
@@ -115,12 +115,9 @@ export class FormDetailsComponent implements OnInit {
   addIlanTarihi: string = '';
   addIlanAciklamasi: string = '';
 
-  showIlanEkle() {
-    this.ilanEkleVisible = !this.ilanEkleVisible;
-  }
-
-  closeIlanEkle() {
-    this.ilanEkleVisible = !this.ilanEkleVisible;
+  isAddNoticePopupVisible = false;
+  toggleAddNoticePopup() {
+    this.isAddNoticePopupVisible = !this.isAddNoticePopupVisible;
   }
 
   editNotice() {
@@ -132,21 +129,33 @@ export class FormDetailsComponent implements OnInit {
     this.isNoticeEditing = false;
   }
 
-  ekleIlan() {
-    if (this.addIlanAdi && this.addIlanKategorisi && this.addIlanAciklamasi) {
-      if (this.addIlanAciklamasi.length >= 100) {
-        alert('İlan eklendi');
-        this.currentUserNotice.noticeTitle = this.addIlanAdi;
-        this.currentUserNotice.noticeCategoryName = this.addIlanKategorisi;
-        this.currentUserNotice.noticeDescription = this.addIlanAciklamasi;
-        this.ilanEkleVisible = !this.ilanEkleVisible;
-      } else {
-        alert(
-          'İlan açıklaması en az 100 karakter içermelidir. Lütfen tekrar kontrol ediniz.'
-        );
-      }
-    } else {
-      alert('Eksik veya yanlış bilgi girdiniz. Lütfen tekrar kontrol ediniz.');
-    }
+  async ekleIlan() {
+    this.noticeRequest.mentorUser_Id = this.currentUser.id;
+
+    await this.apiService
+      .createEntity(this.noticeRequest, 'Notice')
+      .then((res) => {
+        console.log(res);
+        if (res?.status == ResponseStatus.Ok) {
+          this.refresh();
+          window.location.reload();
+        }
+      });
+
+    // if (this.addIlanAdi && this.addIlanKategorisi && this.addIlanAciklamasi) {
+    //   if (this.addIlanAciklamasi.length >= 100) {
+    //     alert('İlan eklendi');
+    //     this.currentUserNotice.noticeTitle = this.addIlanAdi;
+    //     this.currentUserNotice.noticeCategoryName = this.addIlanKategorisi;
+    //     this.currentUserNotice.noticeDescription = this.addIlanAciklamasi;
+    //     this.isAddNoticePopupVisible = !this.isAddNoticePopupVisible;
+    //   } else {
+    //     alert(
+    //       'İlan açıklaması en az 100 karakter içermelidir. Lütfen tekrar kontrol ediniz.'
+    //     );
+    //   }
+    // } else {
+    //   alert('Eksik veya yanlış bilgi girdiniz. Lütfen tekrar kontrol ediniz.');
+    // }
   }
 }

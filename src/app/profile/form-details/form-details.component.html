@@ -43,10 +43,12 @@
           <h4>İlanlarım</h4>
           <br />
           <div class="buttons">
-            <button class="ilanGoruntule" (click)="noticeDetailPopupControl()">
+            <button class="ilanGoruntule" (click)="toggleNoticeDetailPopup()">
               İlanımı Görüntüle
             </button>
-            <button class="ilanEkle" (click)="showIlanEkle()">İlan Ekle</button>
+            <button class="ilanEkle" (click)="toggleAddNoticePopup()">
+              İlan Ekle
+            </button>
           </div>
 
           <div
@@ -54,7 +56,7 @@
             class="ilanPopup"
           >
             <div class="ilanPopup-content">
-              <span (click)="noticeDetailPopupControl()" class="ilanClose-popup"
+              <span (click)="toggleNoticeDetailPopup()" class="ilanClose-popup"
                 >&times;</span
               >
 
@@ -123,59 +125,81 @@
             </div>
           </div>
 
+          <!-- İlan Bilgileri -->
+
           <div
             *ngIf="isNoticeDetailPopupVisible && !currentUserHaveNotice"
             class="ilanPopup"
           >
             <div class="ilanPopup-content">
-              <span (click)="noticeDetailPopupControl()" class="ilanClose-popup"
+              <span (click)="toggleNoticeDetailPopup()" class="ilanClose-popup"
                 >&times;</span
               >
 
-              <!-- İlan Bilgileri -->
               <div class="ilanBilgileri" *ngIf="!isNoticeEditing">
                 <h2>İLANINIZ YOK!</h2>
                 <h3>İlan ekleyiniz</h3>
               </div>
             </div>
+          </div>
 
-            <!-- İlan Ekle -->
-            <div *ngIf="ilanEkleVisible" class="ilanPopup">
-              <div class="ilanPopup-content">
-                <span (click)="closeIlanEkle()" class="ilanClose-popup"
-                  >&times;</span
-                >
-                <div class="form-group">
-                  <label for="ilanAdi">İlan Adı</label>
-                  <input
-                    type="text"
-                    [(ngModel)]="addIlanAdi"
-                    name="ilanAdi"
-                    class="form-control"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="ilanKategorisi">İlan Kategorisi</label>
-                  <input
-                    type="text"
-                    [(ngModel)]="addIlanKategorisi"
-                    name="ilanKategorisi"
-                    class="form-control"
-                  />
-                </div>
-                <div class="form-group">
-                  <label for="ilanAciklamasi">İlan Açıklaması</label>
-                  <input
-                    type="text"
-                    [(ngModel)]="addIlanAciklamasi"
-                    name="ilanAciklamasi"
-                    class="form-control"
-                  />
-                </div>
-                <button type="submit" class="ilanKaydet" (click)="ekleIlan()">
-                  Kaydet
-                </button>
+          <!-- İlan varsa eklemek kısmına basıldığında -->
+          <div
+            *ngIf="isAddNoticePopupVisible && currentUserHaveNotice"
+            class="ilanPopup"
+          >
+            <div class="ilanPopup-content">
+              <span (click)="toggleAddNoticePopup()" class="ilanClose-popup"
+                >&times;</span
+              >
+
+              <div class="ilanBilgileri" *ngIf="!isNoticeEditing">
+                <h2>MEVCUT İLANINIZ BULUNMAKTA!</h2>
+                <h3>
+                  Aktif ilanınız var. Maksimum 1 adet ilanınız bulunabilir!
+                </h3>
               </div>
+            </div>
+          </div>
+          <!-- İlan Ekle -->
+          <div
+            *ngIf="isAddNoticePopupVisible && !currentUserHaveNotice"
+            class="ilanPopup"
+          >
+            <div class="ilanPopup-content">
+              <span (click)="toggleAddNoticePopup()" class="ilanClose-popup"
+                >&times;</span
+              >
+              <div class="form-group">
+                <label for="ilanAdi">İlan Adı</label>
+                <input
+                  type="text"
+                  [(ngModel)]="noticeRequest.noticeTitle"
+                  name="ilanAdi"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="ilanKategorisi">İlan Kategorisi</label>
+                <input
+                  type="text"
+                  [(ngModel)]="noticeRequest.noticeCategoryName"
+                  name="ilanKategorisi"
+                  class="form-control"
+                />
+              </div>
+              <div class="form-group">
+                <label for="ilanAciklamasi">İlan Açıklaması</label>
+                <input
+                  type="text"
+                  [(ngModel)]="noticeRequest.noticeDescription"
+                  name="ilanAciklamasi"
+                  class="form-control"
+                />
+              </div>
+              <button type="submit" class="ilanKaydet" (click)="ekleIlan()">
+                Kaydet
+              </button>
             </div>
           </div>
         </div>
@@ -198,7 +222,7 @@
                     <p>Telefon: {{ item.answer_Phone }}</p>
 
                     <button
-                      (click)="nfaDetailPopupControl()"
+                      (click)="toggleNFADetailPopupControl()"
                       class="details-button"
                     >
                       Detaylar
@@ -206,7 +230,7 @@
                     <div *ngIf="isNFAPopupVisible" class="popup">
                       <div class="popup-content">
                         <span
-                          (click)="nfaDetailPopupControl()"
+                          (click)="toggleNFADetailPopupControl()"
                           class="close-popup"
                           >&times;</span
                         >
