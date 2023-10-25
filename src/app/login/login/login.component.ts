@@ -24,19 +24,17 @@ export class LoginComponent {
     let status = await this.authService.login(this.loginRequest);
 
     if (status == ResponseStatus.Ok) {
-      const userType = this.authService.getUserType();
-      if (userType === 0) {
-        await this.router.navigate(['/admin']); // Admin ise
-      } else if (userType === 1) {
-        await this.router.navigate(['/profile']); // Mnetor ise
-      }
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Başarılı',
+        detail: 'Giriş yapılıyor. Hoşgeldiniz!',
+      });
     } else {
       this.messageService.add({
         severity: 'error',
         summary: 'Hata',
         detail: 'Kullanıcı adı veya şifre hatalı!',
       });
-      this.loginRequest.password = '';
     }
   }
 }
