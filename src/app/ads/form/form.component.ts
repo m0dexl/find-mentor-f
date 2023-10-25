@@ -12,17 +12,19 @@ import { NoticeFormAnswerRequest } from 'src/core/models/request/noticeformanswe
   providers: [MessageService, ConfirmationService],
 })
 export class FormComponent implements OnInit {
-  public noticeFormAnswerRequest: NoticeFormAnswerRequest = <NoticeFormAnswerRequest>{};
-
   constructor(
     private readonly apiService: ApiService,
     private readonly router: Router,
     private messageService: MessageService,
     private route: ActivatedRoute
   ) {}
+  public noticeFormAnswerRequest: NoticeFormAnswerRequest = <
+    NoticeFormAnswerRequest
+  >{};
+
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.noticeFormAnswerRequest.notice_Id
+    this.noticeFormAnswerRequest.notice_Id =
+      +this.route.snapshot.paramMap.get('id')!;
   }
 
   async formAnswer() {
@@ -34,21 +36,18 @@ export class FormComponent implements OnInit {
             summary: 'Başarılı',
             detail: 'Form yanıtları başarıyla gönderildi',
           });
-         
         } else if (response.status === ResponseStatus.Invalid) {
           this.messageService.add({
             severity: 'error',
             summary: 'Hata',
             detail: 'Geçersiz form yanıtları',
           });
-          
         } else {
           this.messageService.add({
             severity: 'error',
             summary: 'Hata',
             detail: 'Beklenmeyen bir hata oluştu',
           });
-          
         }
       },
       (error) => {
@@ -58,9 +57,7 @@ export class FormComponent implements OnInit {
           summary: 'Hata',
           detail: 'API çağrısı sırasında bir hata oluştu',
         });
-        
       }
     );
   }
 }
-

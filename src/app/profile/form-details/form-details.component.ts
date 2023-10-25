@@ -25,6 +25,7 @@ export class FormDetailsComponent implements OnInit {
   currentUserNotice: Notice = <Notice>{};
   currentUserHaveNotice: boolean = false;
   public noticeRequest: NoticeRequest = <NoticeRequest>{};
+  allNoticeFormAnswers: NoticeFormAnswer[] = [];
   currentUserNoticeFormAnswers: NoticeFormAnswer[] = [];
 
   allNotices: Notice[] = [];
@@ -60,7 +61,12 @@ export class FormDetailsComponent implements OnInit {
 
   getCurrentUserNoticeFormAnswers() {
     this.apiService.getAllEntities(NoticeFormAnswer).subscribe((response) => {
-      this.currentUserNoticeFormAnswers = response.data;
+      this.allNoticeFormAnswers = response.data;
+      for (let val of this.allNoticeFormAnswers) {
+        if (val.notice_Id == this.currentUserNotice.id) {
+          this.currentUserNoticeFormAnswers.push(val);
+        }
+      }
     });
   }
 
