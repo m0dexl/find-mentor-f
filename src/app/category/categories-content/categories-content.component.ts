@@ -11,20 +11,16 @@ import { Category } from 'src/core/models/category.model';
 export class CategoriesContentComponent {
   constructor(private apiService: ApiService, private router: Router) {}
 
-  categories: Category[] = []; // Kategorileri depolamak için bir dizi tanımlaması
+  categories: Category[] = [];
 
   ngOnInit() {
-    // Bileşen başlatıldığında otomatik olarak "refresh" fonksiyonunu çağırıyoruz.
     this.refresh();
   }
 
   refresh() {
-    // refresh fonksiyonu, kategorileri API'den alarak bileşenin "categories" dizisine yerleştirir.
     this.apiService.getAllEntities(Category).subscribe((response) => {
-      // API hizmetini kullanarak kategorileri almak için "getAllEntities" fonksiyonunu çağırıyoruz.
-      this.categories = response.data; // API yanıtından gelen kategorileri "categories" dizisine atıyoruz.
+      this.categories = response.data;
 
-      // Büyük harf yapma işlemi
       this.categories = this.categories.map((category) => {
         return {
           ...category,

@@ -9,6 +9,7 @@ import { CategoryComponent } from './category/category.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MentorComponent } from './mentor/mentor.component';
 import { AboutComponent } from './about/about.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { AboutComponent } from './about/about.component';
     MentorComponent,
     AboutComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule, RouterModule],
   exports: [NavbarComponent, FooterComponent, CategoryComponent],
 })
 export class HomeModule {}

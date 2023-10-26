@@ -7,6 +7,7 @@ import { NoticeRequest } from 'src/core/models/request/notice-request-model';
 import { User } from 'src/core/models/user.model';
 import { ResponseStatus } from 'src/core/models/response/base-response-model';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { Category } from 'src/core/models/category.model';
 
 @Component({
   selector: 'app-form-details',
@@ -29,11 +30,13 @@ export class FormDetailsComponent implements OnInit {
   currentUserNoticeFormAnswers: NoticeFormAnswer[] = [];
 
   allNotices: Notice[] = [];
+  allCategories: Category[] = [];
 
   NoticeToEdit: Notice | null = null;
 
   async refresh() {
     this.getCurrentUser();
+    this.getCategories();
     this.getNoticeByMentorId(this.currentUser.id);
     this.getCurrentUserNoticeFormAnswers();
   }
@@ -41,6 +44,13 @@ export class FormDetailsComponent implements OnInit {
   getCurrentUser() {
     const userJson = sessionStorage.getItem('current_user');
     this.currentUser = userJson !== null ? JSON.parse(userJson) : new User();
+  }
+
+  getCategories() {
+    this.apiService.getAllEntities(Category).subscribe((res) => {
+      this.allCategories = res.data;
+      console.log(this.allCategories);
+    });
   }
 
   getNoticeByMentorId(id: number) {

@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'categories', component: CategoriesComponent },
   { path: 'notices', component: AdsComponent },
+  { path: 'notices/:category', component: AdsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 

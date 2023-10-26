@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from 'src/core/models/category.model';
 import { Notice } from 'src/core/models/notice.model';
 import { ApiService } from 'src/core/services/api/api.service';
@@ -10,23 +10,36 @@ import { ApiService } from 'src/core/services/api/api.service';
   styleUrls: ['./ads-content.component.scss'],
 })
 export class AdsContentComponent {
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   notices: Notice[] = [];
-  categories: Category[] = []; // Kategorileri tutacak dizi
+  categories: Category[] = [];
   filteredNotices: Notice[] = [];
   selectedCategory: string = '';
 
   ngOnInit() {
+    this.selectedCategory = this.route.snapshot.paramMap.get('category')!;
+    console.log(this.selectedCategory);
+    this.getCategories();
     this.refresh();
   }
-
   refresh() {
-    //ilanları alıyoruz
     this.apiService.getAllEntities(Notice).subscribe((response) => {
       this.notices = response.data;
-      this.filteredNotices = this.notices;
-      // İlan başlığını ve kategori adını büyük harfe dönüştürme
+      console.log();
+      if (this.selectedCategory == '' || !this.selectedCategory) {
+        this.filteredNotices = this.notices;
+      } else {
+        this.filteredNotices = this.notices.filter(
+          (notice) =>
+            notice.noticeCategoryName.toLowerCase() ===
+            this.selectedCategory.toLowerCase()
+        );
+      }
       this.notices.forEach((notice) => {
         notice.noticeTitle =
           notice.noticeTitle.charAt(0).toUpperCase() +
@@ -35,36 +48,19 @@ export class AdsContentComponent {
           notice.noticeCategoryName.charAt(0).toUpperCase() +
           notice.noticeCategoryName.slice(1);
       });
-
-      this.apiService.getAllEntities(Category).subscribe((response) => {
-        this.categories = response.data;
-      });
     });
   }
 
-  // filterNotices() {
-  //   if (this.selectedCategory === '' && this.notices) {
-  //    for (let val of this.notices) {
-  //      if (val.noticeCategoryName == this.selectedCategory) {
-  //        this.filteredNotices.push(val);
-  //      }
-  //    }
-  //    console.log(this.filteredNotices)
-  //   } else {
-  //     this.filteredNotices = this.notices.filter(
-  //       (notice) => notice.noticeCategoryName === this.selectedCategory
-  //     );
-  //   }
-  // }
+  getCategories() {
+    this.apiService.getAllEntities(Category).subscribe((response) => {
+      this.categories = response.data;
+    });
+  }
 
   filterNotices() {
-    console.log(this.selectedCategory);
-    console.log(this.notices);
     if (this.selectedCategory == '') {
-      // Hiçbir kategori seçilmediyse, tüm ilanları göster
       this.filteredNotices = this.notices;
     } else if (this.selectedCategory != '') {
-      // Kategori seçildiyse, ilanları kategoriye göre filtrele
       this.filteredNotices = this.notices.filter(
         (notice) =>
           notice.noticeCategoryName.toLowerCase() ===
