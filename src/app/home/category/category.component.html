@@ -1,28 +1,41 @@
 <!-- Category Grid-->
 <section class="page-section bg-light" id="portfolio">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-heading text-uppercase">Kategoriler</h2>
-            <h3 class="section-subheading text-muted">Ne Öğrenmek İstersiniz?</h3>
-        </div>
-        
-        <div class="row">
-            <!-- Loop through categories -->
-            <div class="col-lg-4 col-sm-6 mb-4" *ngFor="let category of categories.slice(0, 6)">
-                <!-- Category item -->
-                <div class="portfolio-item">
-                    <a class="portfolio-link" data-bs-toggle="modal" href="#portfolioModal1">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <img class="img-fluid" src="assets/img/category/1.jpg" alt="..." />
-                    </a>
-                    <div class="portfolio-caption">
-                        <div class="portfolio-caption-heading">{{category.category_Name}}</div>
-                        <div class="portfolio-caption-subheading text-muted">{{category.category_Description}}</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="text-center">
+      <h2 class="section-heading text-uppercase">Kategoriler</h2>
+      <h3 class="section-subheading text-muted">Ne Öğrenmek İstersiniz?</h3>
     </div>
+
+    <div class="row">
+      <!-- Loop through categories -->
+      <div
+        class="col-lg-4 col-sm-6 mb-4"
+        *ngFor="let category of categories.slice(0, 6)"
+      >
+        <!-- Category item -->
+        <div class="portfolio-item">
+          <a
+            class="portfolio-link"
+            data-bs-toggle="modal"
+            [routerLink]="['/notices', category.category_Name]"
+          >
+            <div class="portfolio-hover">
+              <div class="portfolio-hover-content">
+                <i class="fas fa-plus fa-3x"></i>
+              </div>
+            </div>
+            <img class="img-fluid" src="assets/img/category/1.jpg" alt="..." />
+          </a>
+          <div class="portfolio-caption">
+            <div class="portfolio-caption-heading">
+              {{ category.category_Name }}
+            </div>
+            <div class="portfolio-caption-subheading text-muted">
+              {{ category.category_Description }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>

@@ -2,11 +2,10 @@
   <div class="filter-box">
     <select
       class="form-select form-select-sm"
-      aria-label="Kategori seçiniz"
       [(ngModel)]="selectedCategory"
       (change)="filterNotices()"
     >
-      <option value="">Bütün kategoriler</option>
+      <option value="" selected>Bütün kategoriler</option>
       <option
         *ngFor="let category of categories"
         [value]="category.category_Name"
@@ -42,12 +41,6 @@
     <div class="rightads">
       <p class="adsp">
         {{ notice.noticeDescription }}
-      </p>
-      <p class="adsp">
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
       </p>
     </div>
   </div>
