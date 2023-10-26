@@ -7,12 +7,14 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { HomeModule } from '../home/home.module';
 import { RouterModule } from '@angular/router';
+import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard.component';
 
 @NgModule({
   declarations: [
     ProfileComponent,
     ProfileContentComponent,
     FormDetailsComponent,
+    ProfileDashboardComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, FormsModule, RouterModule],
 })

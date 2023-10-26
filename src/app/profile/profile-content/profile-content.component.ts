@@ -16,8 +16,9 @@ export class ProfileContentComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router) {}
   ngOnInit() {
     this.getCurrentUser();
-    this.firstName = this.getName(this.currentUser.fullName);
-    this.lastName = this.getLastname(this.currentUser.fullName);
+    this.divideFullname(this.currentUser.fullName);
+    // this.firstName = this.getName(this.currentUser.fullName);
+    // this.lastName = this.getLastname(this.currentUser.fullName);
   }
 
   currentUser: User = <User>{};
@@ -31,16 +32,30 @@ export class ProfileContentComponent implements OnInit {
     this.currentUser = userJson !== null ? JSON.parse(userJson) : new User();
   }
 
-  getName(fullName: string) {
-    const words = fullName.split(' ');
-    words.pop();
-    return words.join(' ');
+  divideFullname(fullName: string) {
+    console.log(fullName.length);
+    if (fullName.length == 1) {
+      this.firstName = fullName;
+    } else {
+      const words = fullName.split(' ');
+      words.pop();
+      this.firstName = words.join(' ');
+
+      const words2 = fullName.split(' ');
+      this.lastName = words2[words2.length - 1];
+    }
   }
 
-  getLastname(fullName: string) {
-    const words = fullName.split(' ');
-    return words[words.length - 1];
-  }
+  // getName(fullName: string) {
+  //   const words = fullName.split(' ');
+  //   words.pop();
+  //   return words.join(' ');
+  // }
+
+  // getLastname(fullName: string) {
+  //   const words = fullName.split(' ');
+  //   return words[words.length - 1];
+  // }
 
   inputUsername: boolean = false;
 

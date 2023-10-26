@@ -1,0 +1,211 @@
+<head>
+  <link
+    href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+</head>
+...
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a href="#" class="brand">
+    <i class="bx bxs-smile"></i>
+    <span class="text">MentorDashboard</span>
+  </a>
+  <ul class="side-menu top">
+    <li class="active">
+      <a href="/admin">
+        <i class="bx bxs-dashboard"></i>
+        <span class="text">Profilim</span>
+      </a>
+    </li>
+    <li>
+      <a href="/usercategory">
+        <i class="bx bxs-shopping-bag-alt"></i>
+        <span class="text">İlanım</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a href="/login" class="logout">
+        <i class="bx bxs-log-out-circle"></i>
+        <span class="text">Çıkış yap</span>
+      </a>
+    </li>
+  </ul>
+</section>
+
+<section id="content">
+  <nav>
+    <i (click)="addToggle()" class="bx bx-menu"></i>
+    <form action="#">
+      <div class="form-input"></div>
+    </form>
+    <a href="#" class="profile">
+      <img
+        src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g"
+      />
+    </a>
+  </nav>
+
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <h1>Profilim</h1>
+      </div>
+    </div>
+
+    <ul class="box-info">
+      <li>
+        <i class="bx bxs-calendar-check"></i>
+        <span class="text">
+          <!-- <h3>{{ categoryCount }}</h3> -->
+          <p>İlanım</p>
+        </span>
+      </li>
+      <li>
+        <i class="bx bxs-group"></i>
+        <span class="text">
+          <!-- <h3>{{ userCount }}</h3> -->
+          <p>İlanıma gelen cevaplar</p>
+        </span>
+      </li>
+    </ul>
+
+    <div class="table-data">
+      <div class="order">
+        <div class="head">
+          <h3>Bilgilerim</h3>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Kullanıcı Adınız</th>
+              <th>Adınız</th>
+              <th>Soyadınız</th>
+              <th>Mailiniz</th>
+              <th>Güncelle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <img
+                  src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g"
+                />
+                <p>{{ currentUser.userName }}</p>
+              </td>
+              <td>
+                <p>{{ firstName }}</p>
+              </td>
+              <td>
+                <p>{{ lastName }}</p>
+              </td>
+              <td>
+                <p>{{ currentUser.email }}</p>
+              </td>
+              <td>
+                <span style="cursor: pointer" class="status completed"
+                  >Güncelle</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- 
+    <div class="table-data">
+      <div class="panel-body bio-graph-info">
+        <h1>Biyografi</h1>
+        <div class="row">
+          <div class="bio-row">
+          </div>
+          <div class="bio-row">
+            <p><span>Adınız </span>: {{ firstName }}</p>
+          </div>
+          <div class="bio-row">
+            <p><span>Soyadınız </span>: {{ lastName }}</p>
+          </div>
+          <div class="bio-row">
+            <p><span>Email adresi </span>: {{ currentUser.email }}</p>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Kategori Ekleme işlemiModal  -->
+    <!-- <div id="modal" *ngIf="isModalOpen">
+      <div class="modal-window">
+        <a
+          href="/dashboard/user/nfa"
+          title="Close"
+          class="modal-close"
+          (click)="closeModal()"
+          >&times;</a
+        >
+        <h3>Kategori Ekle</h3>
+        <form>
+          <div class="form-group">
+            <label for="categoryName" required>Kategori Adı:</label>
+            <input
+              type="text"
+              id="categoryName"
+              [(ngModel)]="newCategoryName"
+              name="newCategoryName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="categoryDescription" required
+              >Kategori Açıklaması:</label
+            >
+            <input
+              type="text"
+              id="categoryDescription"
+              [(ngModel)]="newCategoryDescription"
+              name="newCategoryDescription"
+            />
+          </div>
+          <button type="button" (click)="saveNewCategory()">Kaydet</button>
+        </form>
+      </div>
+    </div> -->
+
+    <!-- Kategori Düzenleme İşlemi Modal -->
+
+    <!-- <div id="edit-modal" *ngIf="isEditModalOpen">
+      <div class="modal-window">
+        <a
+          href="/usercategory"
+          title="Close"
+          class="modal-close"
+          (click)="closeEditModal()"
+          >&times;</a
+        >
+        <h3>Kategori Düzenle</h3>
+        <form>
+          <div class="form-group">
+            <label for="editCategoryName" required>Kategori Adı:</label>
+            <input
+              type="text"
+              id="editCategoryName"
+              [(ngModel)]="editCategoryName"
+              name="editCategoryName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editCategoryDescription" required
+              >Kategori Açıklaması:</label
+            >
+            <input
+              type="text"
+              id="editCategoryDescription"
+              [(ngModel)]="editCategoryDescription"
+              name="editCategoryDescription"
+            />
+          </div>
+          <button type="button" (click)="saveEditedCategory()">Kaydet</button>
+        </form>
+      </div>
+    </div> -->
+  </main>
+</section>

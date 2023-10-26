@@ -12,6 +12,7 @@ import { ProfileComponent } from './profile/profile/profile.component';
 import { FormDetailsComponent } from './profile/form-details/form-details.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { AdminUsercategoryComponent } from './admin/admin-usercategory/admin-usercategory.component';
+import { ProfileDashboardComponent } from './profile/profile-dashboard/profile-dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // Redirect to home page
@@ -24,6 +25,7 @@ const routes: Routes = [
 
   { path: 'profile', component: ProfileComponent },
   { path: 'profile/my-notices', component: FormDetailsComponent },
+  { path: 'dashboard/mentor/profile', component: ProfileDashboardComponent },
   { path: 'contact/:id', component: FormComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'usercategory', component: AdminUsercategoryComponent },
