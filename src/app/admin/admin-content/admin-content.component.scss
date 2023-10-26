@@ -590,3 +590,32 @@ body {
     min-width: 420px;
   }
 }
+
+/* Modal penceresi */
+.modal-window {
+  background-color: #999;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 800px;
+  height:350px;
+  margin: 0 auto;
+  padding: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Kapatma düğmesi */
+.modal-close {
+  color: #060714;
+  cursor: pointer;
+  font-size: 30px;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  text-decoration: none;
+}
