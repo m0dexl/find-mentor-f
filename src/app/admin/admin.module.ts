@@ -4,6 +4,7 @@ import { AdminComponent } from './admin/admin.component';
 import { AdminContentComponent } from './admin-content/admin-content.component';
 import { AdminUsercategoryComponent } from './admin-usercategory/admin-usercategory.component';
 import { FormsModule } from '@angular/forms';
+import { ToastModule } from 'primeng/toast';
 
 
 
@@ -15,7 +16,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ToastModule,
   ]
 })
 export class AdminModule { }

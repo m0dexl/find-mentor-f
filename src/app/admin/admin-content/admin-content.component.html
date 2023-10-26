@@ -130,22 +130,26 @@
     <!-- Modal  -->
     <div id="modal" *ngIf="isAddUserPopupOpen">
       <div class="modal-window">
-        <a href="/admin" title="Close" class="modal-close" (click)="toggleAddUserPopup()">&times;</a>
+        <a title="Close" class="modal-close" (click)="toggleAddUserPopup()">&times;</a>
         <h3>Kullanıcı Ekle</h3>
         <form>
           <div class="form-group">
             <label for="userName" required>Kullanıcı Adı:</label>
-            <input type="text" id="userName" [(ngModel)]="newUserName" name="newUserName">
+            <input type="text" id="userName" [(ngModel)]="addNewUserRequest.userName" name="newUserName">
           </div>
           <div class="form-group">
             <label for="fullName" required>Kullanıcı Full Ad:</label>
-            <input type="text" id="fullName" [(ngModel)]="newFullName" name="newFullName">
+            <input type="text" id="fullName" [(ngModel)]="addNewUserRequest.fullName" name="newFullName">
           </div>
           <div class="form-group">
             <label for="email" required>Kullanıcı Mail:</label>
-            <input type="text" id="email" [(ngModel)]="newEmail" name="newEmail">
+            <input type="text" id="email" [(ngModel)]="addNewUserRequest.email" name="newEmail">
           </div>
-          <button type="button" (click)="saveNewMentor()">Kaydet</button>
+          <div class="form-group">
+            <label for="email" required>Şifre:</label>
+            <input type="text" id="email" [(ngModel)]="addNewUserRequest.password" name="newEmail">
+          </div>
+          <button type="button" (click)="addNewUser()">Kaydet</button>
         </form>
       </div>
     </div>
