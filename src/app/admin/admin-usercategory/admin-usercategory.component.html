@@ -1,10 +1,5 @@
-<head>
-  <link
-    href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
-    rel="stylesheet"
-  />
-</head>
-...
+<!-- Sidebar -->
+
 <section id="sidebar" [ngClass]="status ? 'hide' : ''">
   <a href="#" class="brand">
     <i class="bx bxs-smile"></i>
@@ -24,6 +19,24 @@
       </a>
     </li>
     <li>
+      <!-- <a href="#">
+        </a>
+      </li> -->
+      <!-- <li>
+        <a href="#">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+        </a>
+      </li> -->
+    </li>
+  </ul>
+
+  <ul class="side-menu">
+    <!-- <li>
+      </li> -->
+    <li>
       <a href="/login" class="logout">
         <i class="bx bxs-log-out-circle"></i>
         <span class="text">Logout</span>
@@ -34,6 +47,17 @@
 
 <section id="content">
   <nav>
+    <i (click)="addToggle()" class="bx bx-menu"></i>
+    <a href="#" class="nav-link"></a>
+    <form action="#">
+      <div class="form-input"></div>
+    </form>
+    <a href="#" class="notification"> </a>
+    <a href="#" class="profile">
+      <img
+        src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g"
+      />
+    </a>
   </nav>
   <main>
     <div class="head-title">
@@ -46,91 +70,141 @@
       <li>
         <i class="bx bxs-calendar-check"></i>
         <span class="text">
-          <h3>{{categoryCount}}</h3>
+          <h3>{{ categoryCount }}</h3>
           <p>Kategoriler</p>
         </span>
       </li>
       <li>
         <i class="bx bxs-group"></i>
         <span class="text">
-          <h3>{{userCount}}</h3>
+          <h3>{{ userCount }}</h3>
           <p>Mentörler</p>
         </span>
       </li>
       <li>
         <i class="bx bxs-dollar-circle"></i>
         <span class="text">
-          <h3>{{noticeCount}}</h3>
+          <h3>{{ noticeCount }}</h3>
           <p>İlanlar</p>
         </span>
       </li>
     </ul>
 
+    <div class="table-data">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Kategori Adı</th>
+            <th>
+              <button
+                type="button"
+                class="btn btn-dark p-1 mt-1"
+                (click)="openModal()"
+              >
+                Kategori Ekle
+              </button>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of usercategories">
+            <td>{{ category.category_Name }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-secondary p-1"
+                (click)="deleteCategory(category.id)"
+              >
+                Sil
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-secondary p-1"
+                (click)="openEditModal(category)"
+              >
+                Düzenle
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-<div class="table-data">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Kategori Adı</th>
-        <th>
-          <button type="button" class="btn btn-dark p-1 mt-1" (click)="openModal()">Kategori Ekle</button>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let category of usercategories">
-        <td>{{ category.category_Name }}</td>
-        <td>
-          <button type="button" class="btn btn-secondary p-1" (click)="deleteCategory(category.id)">Sil</button>
-        </td>
-        <td>
-          <button type="button" class="btn btn-secondary p-1" (click)="openEditModal(category)">Düzenle</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Kategori Ekleme işlemiModal  -->
-<div id="modal" *ngIf="isModalOpen">
-  <div class="modal-window">
-    <a href="/usercategory" title="Close" class="modal-close" (click)="closeModal()">&times;</a>  
-    <h3>Kategori Ekle</h3>
-    <form>
-      <div class="form-group">
-        <label for="categoryName" required>Kategori Adı:</label>
-        <input type="text" id="categoryName" [(ngModel)]="newCategoryName" name="newCategoryName">
+    <!-- Kategori Ekleme işlemiModal  -->
+    <div id="modal" *ngIf="isModalOpen">
+      <div class="modal-window">
+        <a
+          href="/usercategory"
+          title="Close"
+          class="modal-close"
+          (click)="closeModal()"
+          >&times;</a
+        >
+        <h3>Kategori Ekle</h3>
+        <form>
+          <div class="form-group">
+            <label for="categoryName" required>Kategori Adı:</label>
+            <input
+              type="text"
+              id="categoryName"
+              [(ngModel)]="newCategoryName"
+              name="newCategoryName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="categoryDescription" required
+              >Kategori Açıklaması:</label
+            >
+            <input
+              type="text"
+              id="categoryDescription"
+              [(ngModel)]="newCategoryDescription"
+              name="newCategoryDescription"
+            />
+          </div>
+          <button type="button" (click)="saveNewCategory()">Kaydet</button>
+        </form>
       </div>
-      <div class="form-group">
-        <label for="categoryDescription" required>Kategori Açıklaması:</label>
-        <input type="text" id="categoryDescription" [(ngModel)]="newCategoryDescription" name="newCategoryDescription">
+    </div>
+
+    <!-- Kategori Düzenleme İşlemi Modal -->
+
+    <div id="edit-modal" *ngIf="isEditModalOpen">
+      <div class="modal-window">
+        <a
+          href="/usercategory"
+          title="Close"
+          class="modal-close"
+          (click)="closeEditModal()"
+          >&times;</a
+        >
+        <h3>Kategori Düzenle</h3>
+        <form>
+          <div class="form-group">
+            <label for="editCategoryName" required>Kategori Adı:</label>
+            <input
+              type="text"
+              id="editCategoryName"
+              [(ngModel)]="editCategoryName"
+              name="editCategoryName"
+            />
+          </div>
+          <div class="form-group">
+            <label for="editCategoryDescription" required
+              >Kategori Açıklaması:</label
+            >
+            <input
+              type="text"
+              id="editCategoryDescription"
+              [(ngModel)]="editCategoryDescription"
+              name="editCategoryDescription"
+            />
+          </div>
+          <button type="button" (click)="saveEditedCategory()">Kaydet</button>
+        </form>
       </div>
-      <button type="button" (click)="saveNewCategory()">Kaydet</button>
-    </form>
-  </div>
-</div>
-
-
-<!-- Kategori Düzenleme İşlemi Modal -->
-
-
-<div id="edit-modal" *ngIf="isEditModalOpen">
-  <div class="modal-window">
-    <a href="/usercategory" title="Close" class="modal-close" (click)="closeEditModal()">&times;</a> 
-    <h3>Kategori Düzenle</h3>
-    <form>
-      <div class="form-group">
-        <label for="editCategoryName" required>Kategori Adı:</label>
-        <input type="text" id="editCategoryName" [(ngModel)]="editCategoryName" name="editCategoryName">
-      </div>
-      <div class="form-group">
-        <label for="editCategoryDescription" required>Kategori Açıklaması:</label>
-        <input type="text" id="editCategoryDescription" [(ngModel)]="editCategoryDescription" name="editCategoryDescription">
-      </div>
-      <button type="button" (click)="saveEditedCategory()">Kaydet</button>
-    </form>
-  </div>
-</div>
-
+    </div>
   </main>
 </section>
