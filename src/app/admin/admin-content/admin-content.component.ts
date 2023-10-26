@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ApiService } from 'src/core/services/api/api.service';
 import { User } from 'src/core/models/user.model';
 import { ResponseStatus } from 'src/core/models/response/base-response-model';
+import { RegisterRequest } from 'src/core/models/request/register-request-model';
+import { AuthService } from 'src/core/services/auth/auth.service';
 
 @Component({
   selector: 'app-admin-content',
@@ -11,7 +13,7 @@ import { ResponseStatus } from 'src/core/models/response/base-response-model';
 })
 export class AdminContentComponent implements OnInit {
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService,private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.showMentor();
@@ -29,7 +31,18 @@ export class AdminContentComponent implements OnInit {
       console.log(response);
     });
   }
+  public addNewUserRequest: RegisterRequest = <RegisterRequest>{}; //gpt bunu kaldır dedi
 
+  async addNewUser(){
+    this.addNewUserRequest.userType = 1;
+
+    let status = await this.authService.register(this.addNewUserRequest);
+
+    if (status == ResponseStatus.Ok) {
+      await this.router.navigate(['../profile']);
+    } else if (status == ResponseStatus.Invalid) {
+    }
+  }
 
   deleteMentor(id: number) {
     if (confirm('Kullanıcıyı silmek istediğinizden emin misiniz?')) {
