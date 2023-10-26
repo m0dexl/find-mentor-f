@@ -609,7 +609,6 @@ body {
   z-index: 1000;
 }
 
-/* Kapatma düğmesi */
 .modal-close {
   color: #060714;
   cursor: pointer;
@@ -618,4 +617,33 @@ body {
   right: 10px;
   top: 10px;
   text-decoration: none;
+}
+.modal-window h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin: 20px 0;
+}
+
+.form-group label {
+  display: block;
+  margin:5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 5px;
+}
+
+.modal-window button {
+  background-color: #060714;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px;
+  padding: 10px 20px;
 }
