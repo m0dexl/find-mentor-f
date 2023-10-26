@@ -1,11 +1,13 @@
 <section class="page-section">
   <div class="filter-box">
+    <!-- <label for="categorySelect">Kategori Seçiniz</label> -->
     <select
       class="form-select form-select-sm"
       [(ngModel)]="selectedCategory"
       (change)="filterNotices()"
     >
-      <option value="" selected>Bütün kategoriler</option>
+    <option [ngValue]="null" disabled selected> Kategoriler</option>
+      <!-- <option value="" disabled selected>Bütün kategoriler</option> -->
       <option
         *ngFor="let category of categories"
         [value]="category.category_Name"
