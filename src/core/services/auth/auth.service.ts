@@ -47,7 +47,7 @@ export class AuthService {
       await this.router.navigate(['/admin']);
     } else if (userType === 1) {
       // Kullanıcı ise yönlendir
-      await this.router.navigate(['/profile']);
+      await this.router.navigate(['/dashboard/mentor/profile']);
     }
   }
 
