@@ -33,3 +33,254 @@
     </li>
   </ul>
 </section>
+<section id="content">
+  <nav>
+    <i (click)="addToggle()" class="bx bx-menu"></i>
+    <form action="#">
+      <div class="form-input"></div>
+    </form>
+    <a href="#" class="profile">
+      <img
+        src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g"
+      />
+    </a>
+  </nav>
+
+  <main>
+    <div class="head-title">
+      <div class="left">
+        <h1>İlanım</h1>
+      </div>
+    </div>
+
+    <ul class="box-info">
+      <li>
+        <i class="bx bxs-calendar-check"></i>
+        <span *ngIf="currentUserHaveNotice" class="text">
+          <h3>1 ilan mevcut</h3>
+          <span
+            style="cursor: pointer"
+            class="showNoticeBtn"
+            (click)="toggleNoticeDetailPopup()"
+            >Görüntüle</span
+          >
+        </span>
+        <span *ngIf="!currentUserHaveNotice" class="text">
+          <h3>İlanınız yok</h3>
+          <span
+            style="cursor: pointer"
+            class="showNoticeBtn"
+            (click)="toggleAddNoticePopup()"
+            >İlan ekle</span
+          >
+        </span>
+      </li>
+      <li>
+        <i class="bx bxs-group"></i>
+        <span class="text">
+          <h3>{{ currentUserNoticeFormAnswers.length }}</h3>
+          <p>İlanıma gelen cevaplar</p>
+        </span>
+      </li>
+    </ul>
+
+    <div class="table-data">
+      <div class="order">
+        <div class="head">
+          <h3>Başvuran kişiler</h3>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Adı</th>
+              <th>Soyadı</th>
+              <th>Mail adresi</th>
+              <th>Telefonu</th>
+              <th>Diğer bilgiler</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let currNfa of currentUserNoticeFormAnswers">
+              <td>
+                <img
+                  src="https://secure.gravatar.com/avatar/d09eaad01aea86c51b4f892b4f8abf6f?s=100&d=wavatar&r=g"
+                />
+                <p>{{ currNfa.answer_Name }}</p>
+              </td>
+              <td>
+                <p>{{ currNfa.answer_Surname }}</p>
+              </td>
+              <td>
+                <p>{{ currNfa.answer_Email }}</p>
+              </td>
+              <td>
+                <p>{{ currNfa.answer_Phone }}</p>
+              </td>
+              <td>
+                <span
+                  (click)="openNFADetailPopupControl(currNfa)"
+                  style="cursor: pointer"
+                  class="status completed"
+                  >Görüntüle</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!--NFA DETAİL POPUP-->
+
+    <div *ngIf="isNFAPopupVisible" id="modal">
+      <div class="modal-window">
+        <span (click)="closeNFADetailPopup()" class="modal-close">&times;</span>
+        <h3>Sorular ve Cevaplar</h3>
+        <form>
+          <div class="form-group">
+            <h4>Soru->Kendinden bahseder misin?</h4>
+            <p>Cevap: {{ currentNfa.answer_AboutYourself }}</p>
+          </div>
+          <div class="form-group">
+            <h4>Soru->Nelerde gelişmek istiyorsun?</h4>
+            <p>Cevap: {{ currentNfa.answer_YourGoal }}</p>
+          </div>
+          <div class="form-group">
+            <h4>Soru->Mentora soruların var mı?</h4>
+            <p>Cevap: {{ currentNfa.answer_ToMentor }}</p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!--ADD NOTICE POPUP-->
+
+    <div *ngIf="isAddNoticePopupVisible && !currentUserHaveNotice" id="modal">
+      <div class="modal-window">
+        <span (click)="toggleAddNoticePopup()" class="modal-close"
+          >&times;</span
+        >
+
+        <form>
+          <div class="form-group">
+            <h4>İlan Başlığı</h4>
+            <input
+              type="text"
+              [(ngModel)]="noticeRequest.noticeTitle"
+              [ngModelOptions]="{ standalone: true }"
+              name="editIlanAdi"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <h4>İlan Kategorisi</h4>
+            <div class="filter-box">
+              <select
+                class="form-select form-select-sm"
+                aria-label="Kategori seçiniz"
+                [(ngModel)]="noticeRequest.noticeCategoryName"
+                [ngModelOptions]="{ standalone: true }"
+              >
+                <option value="">Bütün kategoriler</option>
+                <option
+                  *ngFor="let category of allCategories"
+                  [value]="category.category_Name"
+                >
+                  {{ category.category_Name }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <h4>İlan Açıklaması</h4>
+            <textarea
+              type="text"
+              minlength="100"
+              [(ngModel)]="noticeRequest.noticeDescription"
+              [ngModelOptions]="{ standalone: true }"
+              name="editIlanTarihi"
+              class="form-control"
+            ></textarea>
+          </div>
+        </form>
+        <button
+          class="ilanEdit"
+          *ngIf="isAddNoticePopupVisible"
+          (click)="createNotice()"
+        >
+          İlanı Oluştur
+        </button>
+      </div>
+    </div>
+
+    <!--NOTİCE DETAİL POPUP n EDITING-->
+
+    <div *ngIf="isNoticeDetailPopupVisible && currentUserHaveNotice" id="modal">
+      <div class="modal-window">
+        <span (click)="toggleNoticeDetailPopup()" class="modal-close"
+          >&times;</span
+        >
+        <form *ngIf="!isNoticeEditing">
+          <div class="form-group">
+            <h4>İlan Başlığı</h4>
+            <p>{{ currentUserNotice.noticeTitle }}</p>
+          </div>
+          <div class="form-group">
+            <h4>İlan Kategorisi</h4>
+            <p>{{ currentUserNotice.noticeCategoryName }}</p>
+          </div>
+          <div class="form-group">
+            <h4>İlan Açıklaması</h4>
+            <p>{{ currentUserNotice.noticeDescription }}</p>
+          </div>
+        </form>
+
+        <form *ngIf="isNoticeEditing && NoticeToEdit">
+          <div class="form-group">
+            <h4>İlan Başlığı</h4>
+            <input
+              type="text"
+              [(ngModel)]="NoticeToEdit.noticeTitle"
+              [ngModelOptions]="{ standalone: true }"
+              name="editIlanAdi"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <h4>İlan Açıklaması</h4>
+            <textarea
+              type="text"
+              minlength="100"
+              [(ngModel)]="NoticeToEdit.noticeDescription"
+              [ngModelOptions]="{ standalone: true }"
+              name="editIlanTarihi"
+              class="form-control"
+            ></textarea>
+          </div>
+        </form>
+        <button
+          class="ilanEdit"
+          *ngIf="isNoticeEditing"
+          (click)="updateNotice(currentUserNotice.id, NoticeToEdit!)"
+        >
+          İlanı Kaydet
+        </button>
+
+        <button
+          class="ilanSil"
+          *ngIf="!isNoticeEditing"
+          (click)="deleteNotice(currentUserNotice.id)"
+        >
+          İlan Sil
+        </button>
+        <button
+          class="ilanDuzenle"
+          *ngIf="!isNoticeEditing"
+          (click)="editNotice()"
+        >
+          İlan Düzenle
+        </button>
+      </div>
+    </div>
+  </main>
+</section>

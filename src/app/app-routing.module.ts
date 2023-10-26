@@ -24,8 +24,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
 
-  { path: 'profile', component: ProfileComponent },
-  { path: 'profile/my-notices', component: FormDetailsComponent },
   { path: 'dashboard/mentor/profile', component: ProfileDashboardComponent },
   {
     path: 'dashboard/mentor/nfadetails',
