@@ -12,15 +12,15 @@
   </a>
   <ul class="side-menu top">
     <li class="active">
-      <a href="/admin">
+      <a href="/dashboard/mentor/profile">
         <i class="bx bxs-dashboard"></i>
         <span class="text">Profilim</span>
       </a>
     </li>
     <li>
-      <a href="/usercategory">
+      <a href="/dashboard/mentor/nfadetails">
         <i class="bx bxs-shopping-bag-alt"></i>
-        <span class="text">İlanım</span>
+        <span class="text">İlan Form Cevapları</span>
       </a>
     </li>
   </ul>
@@ -57,15 +57,19 @@
     <ul class="box-info">
       <li>
         <i class="bx bxs-calendar-check"></i>
-        <span class="text">
-          <!-- <h3>{{ categoryCount }}</h3> -->
+        <span *ngIf="currentUserHaveNotice" class="text">
+          <h3>1</h3>
+          <p>İlanım</p>
+        </span>
+        <span *ngIf="!currentUserHaveNotice" class="text">
+          <h3>0</h3>
           <p>İlanım</p>
         </span>
       </li>
       <li>
         <i class="bx bxs-group"></i>
         <span class="text">
-          <!-- <h3>{{ userCount }}</h3> -->
+          <h3>{{ currentUserNoticeFormAnswers.length }}</h3>
           <p>İlanıma gelen cevaplar</p>
         </span>
       </li>
@@ -104,7 +108,10 @@
                 <p>{{ currentUser.email }}</p>
               </td>
               <td>
-                <span style="cursor: pointer" class="status completed"
+                <span
+                  (click)="openUpdateUserPopup()"
+                  style="cursor: pointer"
+                  class="status completed"
                   >Güncelle</span
                 >
               </td>
@@ -113,99 +120,51 @@
         </table>
       </div>
     </div>
-    <!-- 
-    <div class="table-data">
-      <div class="panel-body bio-graph-info">
-        <h1>Biyografi</h1>
-        <div class="row">
-          <div class="bio-row">
-          </div>
-          <div class="bio-row">
-            <p><span>Adınız </span>: {{ firstName }}</p>
-          </div>
-          <div class="bio-row">
-            <p><span>Soyadınız </span>: {{ lastName }}</p>
-          </div>
-          <div class="bio-row">
-            <p><span>Email adresi </span>: {{ currentUser.email }}</p>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
-    <!-- Kategori Ekleme işlemiModal  -->
-    <!-- <div id="modal" *ngIf="isModalOpen">
+    <!-- CurrentUserın bilgilerini Düzenleme İşlemi Modal -->
+
+    <div id="edit-modal" *ngIf="isUserEditing && userToEdit">
       <div class="modal-window">
-        <a
-          href="/dashboard/user/nfa"
-          title="Close"
-          class="modal-close"
-          (click)="closeModal()"
-          >&times;</a
-        >
-        <h3>Kategori Ekle</h3>
-        <form>
-          <div class="form-group">
-            <label for="categoryName" required>Kategori Adı:</label>
-            <input
-              type="text"
-              id="categoryName"
-              [(ngModel)]="newCategoryName"
-              name="newCategoryName"
-            />
-          </div>
-          <div class="form-group">
-            <label for="categoryDescription" required
-              >Kategori Açıklaması:</label
-            >
-            <input
-              type="text"
-              id="categoryDescription"
-              [(ngModel)]="newCategoryDescription"
-              name="newCategoryDescription"
-            />
-          </div>
-          <button type="button" (click)="saveNewCategory()">Kaydet</button>
-        </form>
-      </div>
-    </div> -->
-
-    <!-- Kategori Düzenleme İşlemi Modal -->
-
-    <!-- <div id="edit-modal" *ngIf="isEditModalOpen">
-      <div class="modal-window">
-        <a
-          href="/usercategory"
-          title="Close"
-          class="modal-close"
-          (click)="closeEditModal()"
+        <a title="Close" class="modal-close" (click)="closeUpdateUserPopup()"
           >&times;</a
         >
         <h3>Kategori Düzenle</h3>
         <form>
           <div class="form-group">
-            <label for="editCategoryName" required>Kategori Adı:</label>
+            <label for="editUsername" required>Kullanıcı Adınız:</label>
             <input
               type="text"
+              [(ngModel)]="userToEdit.userName"
               id="editCategoryName"
-              [(ngModel)]="editCategoryName"
-              name="editCategoryName"
+              name="editUsername"
             />
           </div>
           <div class="form-group">
-            <label for="editCategoryDescription" required
-              >Kategori Açıklaması:</label
-            >
+            <label for="editUserFullName" required>Adınız ve Soyadınız:</label>
             <input
               type="text"
+              [(ngModel)]="userToEdit.fullName"
               id="editCategoryDescription"
-              [(ngModel)]="editCategoryDescription"
-              name="editCategoryDescription"
+              name="editUserFullName"
             />
           </div>
-          <button type="button" (click)="saveEditedCategory()">Kaydet</button>
+          <div class="form-group">
+            <label for="editUserEmail" required>Mailiniz:</label>
+            <input
+              type="text"
+              [(ngModel)]="userToEdit.email"
+              id="editCategoryDescription"
+              name="editUserEmail"
+            />
+          </div>
+          <button
+            type="button"
+            (click)="updateUser(currentUser.id, userToEdit)"
+          >
+            Kaydet
+          </button>
         </form>
       </div>
-    </div> -->
+    </div>
   </main>
 </section>

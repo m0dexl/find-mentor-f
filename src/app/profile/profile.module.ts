@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { HomeModule } from '../home/home.module';
 import { RouterModule } from '@angular/router';
 import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard.component';
+import { ProfileDashboardNfasComponent } from './profile-dashboard-nfas/profile-dashboard-nfas.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ProfileDashboardComponent } from './profile-dashboard/profile-dashboard
     ProfileContentComponent,
     FormDetailsComponent,
     ProfileDashboardComponent,
+    ProfileDashboardNfasComponent,
   ],
   imports: [CommonModule, FontAwesomeModule, FormsModule, RouterModule],
 })

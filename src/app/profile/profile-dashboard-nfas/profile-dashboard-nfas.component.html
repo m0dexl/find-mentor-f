@@ -1,0 +1,35 @@
+<head>
+  <link
+    href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+    rel="stylesheet"
+  />
+</head>
+...
+<section id="sidebar" [ngClass]="status ? 'hide' : ''">
+  <a href="#" class="brand">
+    <i class="bx bxs-smile"></i>
+    <span class="text">MentorDashboard</span>
+  </a>
+  <ul class="side-menu top">
+    <li>
+      <a href="/dashboard/mentor/profile">
+        <i class="bx bxs-dashboard"></i>
+        <span class="text">Profilim</span>
+      </a>
+    </li>
+    <li class="active">
+      <a href="/dashboard/mentor/nfadetails">
+        <i class="bx bxs-shopping-bag-alt"></i>
+        <span class="text">İlan Form Cevapları</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a href="/login" class="logout">
+        <i class="bx bxs-log-out-circle"></i>
+        <span class="text">Çıkış yap</span>
+      </a>
+    </li>
+  </ul>
+</section>
